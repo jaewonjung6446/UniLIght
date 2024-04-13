@@ -25,7 +25,10 @@ public class InterAction_Ctrl : MonoBehaviour
 
                 if (hitObject != null) //물체가 있을 경우
                 {
-                    Debug.Log("물체인식");
+                    if (hitObject.GetComponent<InventoryManager>() != null)
+                    {
+                        hitObject.GetComponent<InventoryManager>().AddToInventory(hitObject);
+                    }
                 }
             }
         }
