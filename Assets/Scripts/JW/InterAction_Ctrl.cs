@@ -9,6 +9,7 @@ public class InterAction_Ctrl : MonoBehaviour
     public Text pauseText; // Inspector에서 할당
     [TextArea]
     public string[] messages; // 표시할 메시지 배열
+    [SerializeField] GameObject Sphere;
     private int currentIndex = 0; // 현재 메시지 인덱스
     private bool toggleText = false;
     RaycastHit hit;
@@ -40,6 +41,7 @@ public class InterAction_Ctrl : MonoBehaviour
             }
         }
         if (Input.GetKeyDown(KeyCode.E) && toggleText){
+            Sphere.SetActive(true);
             ToggleText();
         }
     }
