@@ -8,8 +8,12 @@ public class InterAction_Ctrl : MonoBehaviour
 {
     public float raycastDistance = 10f; //인식할 수 있는 범위
     public Text pauseText; // Inspector에서 할당
+    public Text desCription;
     [TextArea]
     public string[] Obj_Cube; // 표시할 메시지 배열
+    [TextArea]
+    public string[] Picture;
+
     private string[] printStrings = null;
     [SerializeField] GameObject Sphere;
     GameObject hitObject;
@@ -17,6 +21,7 @@ public class InterAction_Ctrl : MonoBehaviour
     private bool toggleText = false;
     private bool interAction = false;
     private bool lerpPOV = false;
+    private bool keyDown = false;
     public float moveSpeed = 1.0f;   // 이동 속도
     public float rotateSpeed = 1.0f; // 회전 속도
     private Vector3 startPosition;   // 시작 위치
@@ -25,7 +30,7 @@ public class InterAction_Ctrl : MonoBehaviour
     private Quaternion endRotation;  // 종료 회전
     private float journeyLength;     // 총 이동 거리
     private float startTime;         // 시작 시간
-    private bool movEnd = false;
+    //private bool movEnd = false;
     private Coroutine toggleTextCoroutine = null;
     private Coroutine turnPOVCoroutine = null;
     RaycastHit hit;
@@ -37,28 +42,46 @@ public class InterAction_Ctrl : MonoBehaviour
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * raycastDistance, Color.red); //씬에서 내가 보고있는 방향을 표시
 
         ray = new Ray(transform.position, transform.forward); //보고있는 방향으로 살펴보기
-        GetInfo();
+        if(Physics.Raycast(ray,out hit, raycastDistance)){
+            hitObject = hit.collider.gameObject;
+            if(hitObject != null)
+            {
+                desCription.gameObject.SetActive(true);
+                desCription.text = hitObject.name;
+            }
+        }
+        else
+        {
+            desCription.gameObject.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+            GetInfo();
+        }
         DoWhat();
-        if (lerpPOV) StartCoroutine(TurnPOV());
-        if (!lerpPOV) StopCoroutine(TurnPOV());
+        if (lerpPOV && turnPOVCoroutine == null) turnPOVCoroutine = StartCoroutine(TurnPOV());
+        if (!lerpPOV)
+        {
+            turnPOVCoroutine = null;
+            StopCoroutine(TurnPOV());
+        }
 
-        if (toggleText) StartCoroutine(ToggleText()); // 코루틴 시작
-        if (!toggleText) StopCoroutine(ToggleText()); // 코루틴 시작
+        if (toggleText && turnPOVCoroutine == null) toggleTextCoroutine = StartCoroutine(ToggleText()); // 코루틴 시작
+        if (!toggleText) 
+        {
+            toggleTextCoroutine = null;
+            StopCoroutine(ToggleText()); 
+        }
 
     }
     GameObject GetInfo()
     {
-        if (Input.GetKeyDown(KeyCode.E)) //키보드 E를 눌렀을 때
-        {
-            if (Physics.Raycast(ray, out hit, raycastDistance)) //인식할 수 있는 범위 안에서 물체 확인
-            {
-                hitObject = hit.collider.gameObject; //주변 물체의 정보를 가져옵니다. 상호작용 중임을 나타내는 bool을 true로 합니다.
+            desCription.gameObject.SetActive(false);
                 if (hitObject != null)
                 {
                     interAction = true;
+                    Debug.Log("실행 시작");
                 }
-            }
-        }
         return hitObject;
     }
     private void DoWhat()
@@ -67,9 +90,13 @@ public class InterAction_Ctrl : MonoBehaviour
         {
             if (hitObject.name == "Obj_Cube")
             {
-                if (hitObject.GetComponent<InventoryManager>() !=null) hitObject.GetComponent<InventoryManager>().AddToInventory(hitObject);
-                //printStrings = Obj_Cube;
                 toggleText = true;
+                printStrings = Obj_Cube;
+            }
+            if (hitObject.name == "Picture")
+            {
+                toggleText = true;
+                printStrings = Picture;
             }
             if (hitObject.name == "Flag")
             {
@@ -107,62 +134,62 @@ public class InterAction_Ctrl : MonoBehaviour
 
     IEnumerator TurnPOV()
     {
-        Debug.Log("이동 시작,"+startPosition);
-        while (hitObject.name == "Flag2")
+        Debug.Log("이동시작");
+        while (true)
         {
-            if ((transform.position - endPosition).magnitude <= 0.3f)
+            if ((transform.position - endPosition).magnitude > 0.1f)
             {
-                SceneManager.LoadScene("SceneTranformTest");
-                break;
-            }
-        }
-        while ((transform.position - endPosition).magnitude > 0.1f)
-            {
+                if ((transform.position - endPosition).magnitude <= 0.3f && hitObject.name == "Flag2")
+                {
+                    SceneManager.LoadScene("SceneTranformTest");
+                    break;
+                }
                 // 이동 중
                 float distCovered = (Time.time - startTime) * moveSpeed;
                 float fractionOfJourney = distCovered / journeyLength;
                 transform.position = Vector3.Lerp(startPosition, endPosition, fractionOfJourney);
                 transform.rotation = Quaternion.Slerp(startRotation, endRotation, fractionOfJourney);
-                yield return null;
             }
-        
-        if((transform.position - endPosition).magnitude <= 0.1f && Input.GetKeyDown(KeyCode.E))
-        {
-            GetComponentInChildren<CameraSettings>().enabled = true;
-            this.transform.position = startPosition;
-            Debug.Log("원상복구"+ startPosition + "/"+ this.transform.position);
-            lerpPOV = false;
-            Debug.Log("이동 끝");
+
+            if ((transform.position - endPosition).magnitude <= 0.1f && Input.GetKeyDown(KeyCode.E))
+            {
+                GetComponentInChildren<CameraSettings>().enabled = true;
+                this.transform.position = startPosition;
+                Debug.Log("원상복구" + startPosition + "/" + this.transform.position);
+                lerpPOV = false;
+                Debug.Log("이동 끝");
+                break;
+            }
+            yield return null;
         }
     }
     IEnumerator ToggleText()
     {
-        //오브젝트 이름에 따른 string[]변경
-        switch (hitObject.name)
+        desCription.gameObject.SetActive(false);
+        while (true)
         {
-            case "Obj_Cube":
-                printStrings = Obj_Cube;
-                break;
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (currentIndex < printStrings.Length)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                Time.timeScale = 0f; // 게임 일시 정지
-                pauseText.text = printStrings[currentIndex]; // 현재 인덱스의 메시지 표시
-                pauseText.gameObject.SetActive(true); // 텍스트 활성화
-                currentIndex++; // 다음 메시지로 인덱스 증가
-                Debug.Log("E키 입력 대기");
-                yield return null;
+                Debug.Log("E키 입력");
+                if (currentIndex < printStrings.Length)
+                {
+                    Time.timeScale = 0; // 게임 일시 정지
+                    pauseText.text = printStrings[currentIndex]; // 현재 인덱스의 메시지 표시
+                    pauseText.gameObject.SetActive(true); // 텍스트 활성화
+                    currentIndex++; // 다음 메시지로 인덱스 증가
+                }
+                else
+                {
+                    Time.timeScale = 1.0f; // 게임 재개
+                    pauseText.gameObject.SetActive(false); // 텍스트 숨기기
+                    pauseText.text = null;
+                    toggleText = false;
+                    currentIndex = 0;
+                    if (hitObject.GetComponent<InventoryManager>() != null) hitObject.GetComponent<InventoryManager>().AddToInventory(hitObject);
+                    break;
+                }
             }
-            else
-            {
-                Time.timeScale = 1.0f; // 게임 재개
-                pauseText.gameObject.SetActive(false); // 텍스트 숨기기
-                toggleText = false;
-                
-                yield return null;
-            }
+        yield return new WaitForFixedUpdate();
         }
     }
 }

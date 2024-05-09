@@ -19,7 +19,7 @@ public class InventoryManager : MonoBehaviour
         inventory.Add(item);
 
         // 아이템을 인벤토리에 추가했다는 것을 로그로 남김
-        Debug.Log(item.name + " has been added to the inventory.");
+        //Debug.Log(item.name + " has been added to the inventory.");
 
         // 선택적으로, 아이템을 비활성화 할 수 있습니다. (인벤토리에 보관되므로)
         item.SetActive(false);
