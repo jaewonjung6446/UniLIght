@@ -13,9 +13,13 @@ public class InterAction_Ctrl : MonoBehaviour
     public string[] Obj_Cube; // 표시할 메시지 배열
     [TextArea]
     public string[] Picture;
-
+    [TextArea]
+    public string[] antidepressant;
+    [SerializeField] private Image DesImage;
     private string[] printStrings = null;
     [SerializeField] GameObject Sphere;
+    [SerializeField] GameObject TextPanel;
+
     GameObject hitObject;
     private int currentIndex = 0; // 현재 메시지 인덱스
     private bool toggleText = false;
@@ -30,6 +34,9 @@ public class InterAction_Ctrl : MonoBehaviour
     private Quaternion endRotation;  // 종료 회전
     private float journeyLength;     // 총 이동 거리
     private float startTime;         // 시작 시간
+    private bool pressE = false;
+    private bool pressQ = false;
+
     //private bool movEnd = false;
     private Coroutine toggleTextCoroutine = null;
     private Coroutine turnPOVCoroutine = null;
@@ -42,9 +49,16 @@ public class InterAction_Ctrl : MonoBehaviour
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * raycastDistance, Color.red); //씬에서 내가 보고있는 방향을 표시
 
         ray = new Ray(transform.position, transform.forward); //보고있는 방향으로 살펴보기
-        if(Physics.Raycast(ray,out hit, raycastDistance)){
+        #region Input매니저
+        if (Input.GetKeyDown(KeyCode.E)) pressE = true;
+        else pressE = false;
+        if (Input.GetKeyDown(KeyCode.Q)) pressQ = true;
+        else pressQ = false;
+        #endregion
+        if (Physics.Raycast(ray, out hit, raycastDistance))
+        {
             hitObject = hit.collider.gameObject;
-            if(hitObject != null)
+            if (hitObject != null)
             {
                 desCription.gameObject.SetActive(true);
                 desCription.text = hitObject.name;
@@ -54,58 +68,67 @@ public class InterAction_Ctrl : MonoBehaviour
         {
             desCription.gameObject.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.E)) 
+        if (pressE)
         {
             GetInfo();
         }
         DoWhat();
-        if (lerpPOV && turnPOVCoroutine == null) turnPOVCoroutine = StartCoroutine(TurnPOV());
+        if (lerpPOV && turnPOVCoroutine == null)
+        {
+            turnPOVCoroutine = StartCoroutine(TurnPOV());
+        }
         if (!lerpPOV)
         {
             turnPOVCoroutine = null;
             StopCoroutine(TurnPOV());
         }
-
-        if (toggleText && turnPOVCoroutine == null) toggleTextCoroutine = StartCoroutine(ToggleText()); // 코루틴 시작
-        if (!toggleText) 
+        if (toggleText && toggleTextCoroutine == null)
+        {
+            toggleTextCoroutine = StartCoroutine(ToggleText());
+            Debug.Log("코루틴 시작");
+        }// 코루틴 시작
+        if (!toggleText)
         {
             toggleTextCoroutine = null;
-            StopCoroutine(ToggleText()); 
+            StopCoroutine(ToggleText());
         }
-
     }
     GameObject GetInfo()
     {
-            desCription.gameObject.SetActive(false);
-                if (hitObject != null)
-                {
-                    interAction = true;
-                    Debug.Log("실행 시작");
-                }
+        desCription.gameObject.SetActive(false);
+        if (hitObject != null)
+        {
+            interAction = true;
+        }
         return hitObject;
     }
     private void DoWhat()
     {
         if (hitObject != null && interAction)
         {
-            if (hitObject.name == "Obj_Cube")
+            if (hitObject.name == "궤도 폭격 조종기")
             {
                 toggleText = true;
                 printStrings = Obj_Cube;
             }
-            if (hitObject.name == "Picture")
+            if (hitObject.name == "사진")
             {
+                //hitObject.transform.position = transform.position + transform.forward;
                 toggleText = true;
                 printStrings = Picture;
             }
-            if (hitObject.name == "Flag")
+            if (hitObject.name == "항우울제")
             {
-                Debug.Log("물체감지");
+                toggleText = true;
+            }
+
+            if (hitObject.name == "소파")
+            {
                 startPosition = transform.position;
                 startRotation = transform.rotation;
                 if (GetInfo() != null)
                 {
-                    endPosition = new Vector3(-2.01799989f, 0.996999979f, 0.468981743f);       // 목표 Transform의 위치를 종료 위치로 설정
+                    endPosition = hitObject.transform.position;       // 목표 Transform의 위치를 종료 위치로 설정
                     endRotation = GetInfo().transform.rotation;       // 목표 Transform의 회전을 종료 회전으로 설정
                 }
                 journeyLength = Vector3.Distance(startPosition, endPosition); // 시작점과 종점 사이의 거리 계산
@@ -113,14 +136,13 @@ public class InterAction_Ctrl : MonoBehaviour
                 GetComponentInChildren<CameraSettings>().enabled = false;
                 lerpPOV = true;
             }
-            if (hitObject.name == "Flag2")
+            if (hitObject.name == "씬전환테스트")
             {
-                Debug.Log("물체감지2");
                 startPosition = transform.position;
                 startRotation = transform.rotation;
                 if (GetInfo() != null)
                 {
-                    endPosition = new Vector3(0.340000004f, 0.996999979f, -0.949999988f);      // 목표 Transform의 위치를 종료 위치로 설정
+                    endPosition = hitObject.transform.position;       // 목표 Transform의 위치를 종료 위치로 설정
                     endRotation = GetInfo().transform.rotation;       // 목표 Transform의 회전을 종료 회전으로 설정
                 }
                 journeyLength = Vector3.Distance(startPosition, endPosition); // 시작점과 종점 사이의 거리 계산
@@ -137,12 +159,17 @@ public class InterAction_Ctrl : MonoBehaviour
         Debug.Log("이동시작");
         while (true)
         {
+            raycastDistance = 0;
             if ((transform.position - endPosition).magnitude > 0.1f)
             {
-                if ((transform.position - endPosition).magnitude <= 0.3f && hitObject.name == "Flag2")
+                if ((transform.position - endPosition).magnitude <= 0.3f && hitObject.name == "씬전환테스트" && SceneManager.GetActiveScene().name == "Jaewon_Test1")
                 {
-                    SceneManager.LoadScene("SceneTranformTest");
+                    SceneManager.LoadScene("Jaewon_Test2");
                     break;
+                }
+                else if ((transform.position - endPosition).magnitude <= 0.3f && hitObject.name == "씬전환테스트" && SceneManager.GetActiveScene().name == "Jaewon_Test2")
+                {
+                    SceneManager.LoadScene("Jaewon_Test1");
                 }
                 // 이동 중
                 float distCovered = (Time.time - startTime) * moveSpeed;
@@ -151,8 +178,9 @@ public class InterAction_Ctrl : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(startRotation, endRotation, fractionOfJourney);
             }
 
-            if ((transform.position - endPosition).magnitude <= 0.1f && Input.GetKeyDown(KeyCode.E))
+            if ((transform.position - endPosition).magnitude <= 0.1f && pressE)
             {
+                raycastDistance = 10;
                 GetComponentInChildren<CameraSettings>().enabled = true;
                 this.transform.position = startPosition;
                 Debug.Log("원상복구" + startPosition + "/" + this.transform.position);
@@ -165,8 +193,71 @@ public class InterAction_Ctrl : MonoBehaviour
     }
     IEnumerator ToggleText()
     {
+        raycastDistance = 0;
         desCription.gameObject.SetActive(false);
-        while (true)
+        TextPanel.SetActive(true);
+        #region 우울증약
+        if (hitObject.name == "항우울제")
+        {
+            Debug.Log("항우울제 시작");
+            Time.timeScale = 0f; // 게임 일시 정지
+            pauseText.gameObject.SetActive(true); // 텍스트 활성화
+            DesImage.gameObject.SetActive(true);
+            if (Resources.Load<Sprite>("Images/antidepressant") != null)
+            {
+                DesImage.sprite = Resources.Load<Sprite>("Images/antidepressant");
+                pauseText.text = "나른해지고 아무 생각이 들지 않게 된다.\n복용 하시겠습니까? \n (E를 눌러 복용/Q로 취소)";
+            }
+            else
+            {
+                Debug.Log("우울제 이미지 로드실패");
+            }
+
+            // 키 입력을 기다리는 루프
+            bool done = false;
+
+            while (!done)
+            {
+                yield return null; // 다음 프레임까지 기다림
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("복용");
+                    if (Resources.Load<Sprite>("Images/swallow") != null)
+                    {
+                        DesImage.sprite = Resources.Load<Sprite>("Images/swallow");
+                    }
+                    else
+                    {
+                        Debug.Log("이미지 로드실패");
+                    }
+                    pauseText.text = "조금은 진정이 된다";
+                    bool done2 = false;
+                    while (!done2)
+                    {
+                        yield return new WaitForSecondsRealtime(1.5f);
+                        toggleText = false;
+                        done2 = true;
+                    }
+                    done = true; // 루프 종료
+                }
+                else if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    Debug.Log("복용취소");
+                    toggleText = false;
+                    done = true; // 루프 종료
+                }
+            }
+
+            // 게임 재개
+            Time.timeScale = 1.0f;
+            TextPanel.SetActive(false);
+            pauseText.gameObject.SetActive(false);
+            DesImage.gameObject.SetActive(false);
+            raycastDistance = 10;
+        }
+        #endregion
+        #region 리스트 출력방식
+        while (printStrings != null)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -174,8 +265,8 @@ public class InterAction_Ctrl : MonoBehaviour
                 if (currentIndex < printStrings.Length)
                 {
                     Time.timeScale = 0; // 게임 일시 정지
-                    pauseText.text = printStrings[currentIndex]; // 현재 인덱스의 메시지 표시
                     pauseText.gameObject.SetActive(true); // 텍스트 활성화
+                    pauseText.text = printStrings[currentIndex]; // 현재 인덱스의 메시지 표시
                     currentIndex++; // 다음 메시지로 인덱스 증가
                 }
                 else
@@ -185,11 +276,13 @@ public class InterAction_Ctrl : MonoBehaviour
                     pauseText.text = null;
                     toggleText = false;
                     currentIndex = 0;
-                    if (hitObject.GetComponent<InventoryManager>() != null) hitObject.GetComponent<InventoryManager>().AddToInventory(hitObject);
+                    raycastDistance = 10;
+                    TextPanel.SetActive(false);
                     break;
                 }
             }
-        yield return new WaitForFixedUpdate();
+            yield return null;
         }
+        #endregion
     }
 }
