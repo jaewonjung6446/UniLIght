@@ -15,6 +15,9 @@ public class InterAction_Ctrl : MonoBehaviour
     public string[] Picture;
     [TextArea]
     public string[] antidepressant;
+    [TextArea]
+    public string[] Radio; // 표시할 메시지 배열
+
     [SerializeField] private Image DesImage;
     private string[] printStrings = null;
     [SerializeField] GameObject Sphere;
@@ -43,6 +46,10 @@ public class InterAction_Ctrl : MonoBehaviour
     RaycastHit hit;
     Ray ray;
     [SerializeField] private Camera mainCam;
+    private void Start()
+    {
+        TextPanel.SetActive(false);
+    }
     void Update()
     {
 
@@ -113,13 +120,24 @@ public class InterAction_Ctrl : MonoBehaviour
             }
             if (hitObject.name == "사진")
             {
-                //hitObject.transform.position = transform.position + transform.forward;
                 toggleText = true;
                 printStrings = Picture;
+                DesImage.gameObject.SetActive(true);
+                if (Resources.Load<Sprite>("Images/사진") != null)
+                {
+                    DesImage.sprite = Resources.Load<Sprite>("Images/사진");
+                }
+
             }
             if (hitObject.name == "항우울제")
             {
                 toggleText = true;
+                printStrings = null;
+            }
+            if (hitObject.name == "라디오")
+            {
+                toggleText = true;
+                printStrings = Radio;
             }
 
             if (hitObject.name == "소파")
@@ -278,6 +296,7 @@ public class InterAction_Ctrl : MonoBehaviour
                     currentIndex = 0;
                     raycastDistance = 10;
                     TextPanel.SetActive(false);
+                    DesImage.gameObject.SetActive(false);
                     break;
                 }
             }
