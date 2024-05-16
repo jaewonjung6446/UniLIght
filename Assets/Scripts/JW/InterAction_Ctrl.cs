@@ -80,6 +80,11 @@ public class InterAction_Ctrl : MonoBehaviour
             GetInfo();
         }
         DoWhat();
+        if (toggleText && toggleTextCoroutine == null)
+        {
+            toggleTextCoroutine = StartCoroutine(ToggleText());
+            Debug.Log("코루틴 시작");
+        }// 코루틴 시작
         if (lerpPOV && turnPOVCoroutine == null)
         {
             turnPOVCoroutine = StartCoroutine(TurnPOV());
@@ -89,11 +94,6 @@ public class InterAction_Ctrl : MonoBehaviour
             turnPOVCoroutine = null;
             StopCoroutine(TurnPOV());
         }
-        if (toggleText && toggleTextCoroutine == null)
-        {
-            toggleTextCoroutine = StartCoroutine(ToggleText());
-            Debug.Log("코루틴 시작");
-        }// 코루틴 시작
         if (!toggleText)
         {
             toggleTextCoroutine = null;
@@ -180,6 +180,7 @@ public class InterAction_Ctrl : MonoBehaviour
             raycastDistance = 0;
             if ((transform.position - endPosition).magnitude > 0.1f)
             {
+                //씬전환 테스트
                 if ((transform.position - endPosition).magnitude <= 0.3f && hitObject.name == "씬전환테스트" && SceneManager.GetActiveScene().name == "Jaewon_Test1")
                 {
                     SceneManager.LoadScene("Jaewon_Test2");
@@ -189,6 +190,7 @@ public class InterAction_Ctrl : MonoBehaviour
                 {
                     SceneManager.LoadScene("Jaewon_Test1");
                 }
+
                 // 이동 중
                 float distCovered = (Time.time - startTime) * moveSpeed;
                 float fractionOfJourney = distCovered / journeyLength;
@@ -198,12 +200,12 @@ public class InterAction_Ctrl : MonoBehaviour
 
             if ((transform.position - endPosition).magnitude <= 0.1f && pressE)
             {
-                raycastDistance = 10;
                 GetComponentInChildren<CameraSettings>().enabled = true;
                 this.transform.position = startPosition;
                 Debug.Log("원상복구" + startPosition + "/" + this.transform.position);
                 lerpPOV = false;
                 Debug.Log("이동 끝");
+                raycastDistance = 10;
                 break;
             }
             yield return null;
@@ -297,6 +299,7 @@ public class InterAction_Ctrl : MonoBehaviour
                     raycastDistance = 10;
                     TextPanel.SetActive(false);
                     DesImage.gameObject.SetActive(false);
+                    hitObject = null;
                     break;
                 }
             }
