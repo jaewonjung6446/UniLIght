@@ -7,6 +7,6 @@ public class StartButtonScript : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("PlayScene");
+        SceneManager.LoadScene("Tutorial");
     }
 }
