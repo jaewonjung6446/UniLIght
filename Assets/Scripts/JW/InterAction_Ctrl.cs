@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class InterAction_Ctrl : MonoBehaviour
 {
+    public static InterAction_Ctrl Instance;
     public float raycastDistance = 10f; //인식할 수 있는 범위
     public Text pauseText; // Inspector에서 할당
     public Text desCription;
@@ -49,6 +50,7 @@ public class InterAction_Ctrl : MonoBehaviour
     private void Start()
     {
         TextPanel.SetActive(false);
+        Instance = this;
     }
     void Update()
     {
