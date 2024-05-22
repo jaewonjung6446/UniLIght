@@ -102,7 +102,7 @@ public class InterAction_Ctrl : MonoBehaviour
             StopCoroutine(ToggleText());
         }
     }
-    GameObject GetInfo()
+    public GameObject GetInfo()
     {
         desCription.gameObject.SetActive(false);
         if (hitObject != null)
@@ -111,7 +111,7 @@ public class InterAction_Ctrl : MonoBehaviour
         }
         return hitObject;
     }
-    private void DoWhat()
+    public void DoWhat()
     {
         if (hitObject != null && interAction)
         {
