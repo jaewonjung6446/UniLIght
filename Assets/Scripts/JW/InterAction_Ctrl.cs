@@ -40,6 +40,7 @@ public class InterAction_Ctrl : MonoBehaviour
     private float startTime;         // 시작 시간
     private bool pressE = false;
     private bool pressQ = false;
+    Tutorial tutorial;
 
     //private bool movEnd = false;
     private Coroutine toggleTextCoroutine = null;
@@ -51,6 +52,7 @@ public class InterAction_Ctrl : MonoBehaviour
     {
         TextPanel.SetActive(false);
         Instance = this;
+        tutorial = FindObjectOfType<Tutorial>();
     }
     void Update()
     {
@@ -117,8 +119,20 @@ public class InterAction_Ctrl : MonoBehaviour
         {
             if (hitObject.name == "궤도 폭격 조종기")
             {
-                toggleText = true;
-                printStrings = Obj_Cube;
+                Time.timeScale = 0;
+                pauseText.gameObject.SetActive(true);
+                pauseText.text ="폭격 조종기이다. 폭격을 지시하시겠습니까?";
+                raycastDistance = 0;
+                desCription.gameObject.SetActive(false);
+                TextPanel.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    pauseText.enabled = false;
+                    Time.timeScale = 1.0f;
+                    Scene loadedScene = SceneManager.GetSceneByName("bomb");
+                    Debug.Log(loadedScene.IsValid());
+                    tutorial.SetActiveSceneObjects(loadedScene, true);
+                }
             }
             if (hitObject.name == "사진")
             {

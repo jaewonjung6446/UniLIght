@@ -12,12 +12,14 @@ public class Tutorial : MonoBehaviour
     public float fadeInTime = 0.5f; // 페이드인에 걸리는 시간
     public float fadeOutTime = 0.5f; // 페이드아웃에 걸리는 시간
     public float startDelay = 1.5f; // 페이드인 시작 전 대기 시간
+    public string sceneName;
 
     private void Start()
     {
         StartCoroutine(StartScene());
         imageCanvasGroup.alpha = 0;
         StartCoroutine(FadeInAndOut());
+        DontDestroyOnLoad(this.gameObject);
     }
     IEnumerator StartScene()
     {
@@ -32,6 +34,7 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSecondsRealtime(2.5f);
         DesImage.enabled = false;
         SceneManager.LoadScene("Jaewon_Test1");
+        StartCoroutine("LoadSceneAndDeactivate");
     }
     IEnumerator FadeInAndOut()
     {
@@ -58,5 +61,67 @@ public class Tutorial : MonoBehaviour
             yield return null;
         }
         imageCanvasGroup.alpha = 0; // 최종적으로 완전히 투명하게 설정
+    }
+    IEnumerator LoadSceneAndDeactivate()
+    {
+        // 씬을 비동기적으로 로드
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+        // 씬이 로드될 때까지 기다림
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        // 씬이 로드된 후 씬의 루트 오브젝트를 비활성화
+        Scene loadedScene = SceneManager.GetSceneByName(sceneName);
+        if (loadedScene.IsValid())
+        {
+            SetActiveSceneObjects(loadedScene, false);
+        }
+        else
+        {
+            Debug.LogError("씬 로드 실패: " + sceneName);
+        }
+    }
+    public void SetActiveSceneObjects(Scene scene, bool isActive)
+    {
+        foreach (GameObject go in scene.GetRootGameObjects())
+        {
+            if (!go.activeSelf)
+            {
+                Debug.Log("트루 전환");
+            }
+            go.SetActive(isActive);
+        }
+    }
+    public void ActivateSpecificObject(Scene scene, string objectName)
+    {
+        foreach (GameObject go in scene.GetRootGameObjects())
+        {
+            if (go.name == objectName)
+            {
+                go.SetActive(true);
+                break;
+            }
+        }
+    }
+
+    public void ActivateScene()
+    {
+        Scene scene = SceneManager.GetSceneByName(sceneName);
+        if (scene.IsValid())
+        {
+            SetActiveSceneObjects(scene, true);
+        }
+    }
+
+    public void DeactivateScene()
+    {
+        Scene scene = SceneManager.GetSceneByName(sceneName);
+        if (scene.IsValid())
+        {
+            SetActiveSceneObjects(scene, false);
+        }
     }
 }

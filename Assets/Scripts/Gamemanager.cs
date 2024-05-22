@@ -8,6 +8,7 @@ public class Gamemanager : MonoBehaviour
     public GameObject MenuPanel;
     private void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         MenuPanel.SetActive(false);
     }
     private void Update()
