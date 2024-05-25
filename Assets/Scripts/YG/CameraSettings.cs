@@ -22,7 +22,7 @@ public class CameraSettings : MonoBehaviour
         cc = player.GetComponent<CharacterController>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        transform.localPosition = new Vector3(transform.position.x,Inity ,transform.position.z); // 초기 카메라 높이 설정
+        transform.localPosition = new Vector3(0,Inity ,0); // 초기 카메라 높이 설정
     }
 
     // Update is called once per frame
