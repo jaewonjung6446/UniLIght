@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Reflection;
+using System;
+
 
 public class InterAction_Ctrl : MonoBehaviour
 {
@@ -21,7 +24,7 @@ public class InterAction_Ctrl : MonoBehaviour
 
     [SerializeField] private Image DesImage;
     private string[] printStrings = null;
-    [SerializeField] GameObject Sphere;
+    //[SerializeField] GameObject Sphere;
     [SerializeField] GameObject TextPanel;
 
     GameObject hitObject;
@@ -60,12 +63,6 @@ public class InterAction_Ctrl : MonoBehaviour
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * raycastDistance, Color.red); //씬에서 내가 보고있는 방향을 표시
 
         ray = new Ray(transform.position, transform.forward); //보고있는 방향으로 살펴보기
-        #region Input매니저
-        if (Input.GetKeyDown(KeyCode.E)) pressE = true;
-        else pressE = false;
-        if (Input.GetKeyDown(KeyCode.Q)) pressQ = true;
-        else pressQ = false;
-        #endregion
         if (Physics.Raycast(ray, out hit, raycastDistance))
         {
             hitObject = hit.collider.gameObject;
@@ -77,13 +74,16 @@ public class InterAction_Ctrl : MonoBehaviour
         }
         else
         {
+            hitObject = null;
             desCription.gameObject.SetActive(false);
         }
         if (pressE)
         {
             GetInfo();
         }
-        DoWhat();
+        GetCoroutineAndRun("Test_Obj");
+        #region 예전버전
+        /*DoWhat();
         if (toggleText && toggleTextCoroutine == null)
         {
             toggleTextCoroutine = StartCoroutine(ToggleText());
@@ -102,7 +102,8 @@ public class InterAction_Ctrl : MonoBehaviour
         {
             toggleTextCoroutine = null;
             StopCoroutine(ToggleText());
-        }
+        }*/
+        #endregion
     }
     public GameObject GetInfo()
     {
@@ -113,7 +114,7 @@ public class InterAction_Ctrl : MonoBehaviour
         }
         return hitObject;
     }
-    public void DoWhat()
+    /*public void DoWhat()
     {
         if (hitObject != null && interAction)
         {
@@ -121,7 +122,7 @@ public class InterAction_Ctrl : MonoBehaviour
             {
                 Time.timeScale = 0;
                 pauseText.gameObject.SetActive(true);
-                pauseText.text ="폭격 조종기이다. 폭격을 지시하시겠습니까?";
+                pauseText.text = "폭격 조종기이다. 폭격을 지시하시겠습니까?";
                 raycastDistance = 0;
                 desCription.gameObject.SetActive(false);
                 TextPanel.SetActive(true);
@@ -136,12 +137,26 @@ public class InterAction_Ctrl : MonoBehaviour
             }
             if (hitObject.name == "사진")
             {
-                toggleText = true;
-                printStrings = Picture;
+                raycastDistance = 0;
+                desCription.gameObject.SetActive(false);
+                TextPanel.SetActive(true);
                 DesImage.gameObject.SetActive(true);
+                pauseText.gameObject.SetActive(true);
+                pauseText.text = "함께 찍은 사진이다. 마음의 안정이 된다.";
+                Time.timeScale = 0;
                 if (Resources.Load<Sprite>("Images/사진") != null)
                 {
                     DesImage.sprite = Resources.Load<Sprite>("Images/사진");
+                }
+                else
+                {
+                    Debug.Log("사진 Null");
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    pauseText.enabled = false;
+                    DesImage.gameObject.SetActive(false);
+                    Time.timeScale = 1.0f;
                 }
 
             }
@@ -322,5 +337,101 @@ public class InterAction_Ctrl : MonoBehaviour
             yield return null;
         }
         #endregion
+    }*///예전버전 주석처리. 펴면 엄청기니까 어지간하면 펴지 말 것
+    //인자 className과 같은 클래스를 불러오고, 그중에서methodName과 같은 '일반 메소드'를 불러와서 자동으로 실행하는 함수.
+    void CreateAndCallMethod(string className, string methodName)
+    {
+        // 클래스 타입을 문자열로 검색
+        Type type = Type.GetType(className);
+        if (type != null)
+        {
+            // 게임 오브젝트를 생성하고 해당 타입의 컴포넌트를 추가
+            GameObject obj = new GameObject(className);
+            Component component = obj.AddComponent(type);
+
+            // 메서드를 호출
+            MethodInfo method = type.GetMethod(methodName);
+            if (method != null)
+            {
+                method.Invoke(component, null);
+            }
+            else
+            {
+                Debug.LogError($"Method {methodName} not found in {className}.");
+            }
+        }
+        else
+        {
+            Debug.LogError($"Class {className} not found.");
+        }
+    }
+    //위인자 className과 같은 클래스를 불러오고, 그중에서methodName과 같은 '코루틴'을 불러와서 자동으로 실행하는 함수.
+    void CreateAndCallCoroutine(string className, string coroutineName)
+    {
+        // 클래스 타입을 문자열로 검색
+        Type type = Type.GetType(className);
+        if (type != null)
+        {
+            // 게임 오브젝트를 생성하고 해당 타입의 컴포넌트를 추가
+            GameObject obj = new GameObject(className);
+            MonoBehaviour component = obj.AddComponent(type) as MonoBehaviour;
+
+            // 코루틴 메서드를 호출
+            MethodInfo method = type.GetMethod(coroutineName);
+            if (method != null)
+            {
+                // 코루틴 시작
+                StartCoroutineWrapper(component, method);
+            }
+            else
+            {
+                Debug.LogError($"Coroutine {coroutineName} not found in {className}.");
+            }
+        }
+        else
+        {
+            Debug.LogError($"Class {className} not found.");
+        }
+    }
+    void StartCoroutineWrapper(MonoBehaviour component, MethodInfo method)
+    {
+        // StartCoroutine을 호출하기 위해 래퍼 메서드를 사용
+        StartCoroutine(CoroutineStarter(component, method));
+    }
+
+    IEnumerator CoroutineStarter(MonoBehaviour component, MethodInfo method)
+    {
+        // 코루틴을 호출하고 IEnumerator 반환
+        yield return (IEnumerator)method.Invoke(component, null);
+    }
+    //밑의 두 메소드는  className 만 입력하면 같은 이름의 오브젝트의 className과 이름이 같은
+    //스크립트를 검색해서 (반드시 스크립트 명은 오브젝트 이름과 같아야함) 스크립트가 상속받은 InterFace내의 InterAction()를 자동으로 호출함.
+    void GetMethodAndRun(string className)
+    {
+        if (GetInfo() != null && GetInfo().name == className)
+        {
+            //Type type = Type.GetType(GetInfo().name);
+            Debug.Log("인식");
+            CreateAndCallMethod(GetInfo().name, "InterAction");
+        }
+        else
+        {
+            Debug.Log("인식 끝");
+        }
+    }
+
+    void GetCoroutineAndRun(string className)
+    {
+        if (GetInfo() != null && GetInfo().name == className)
+        {
+            //Type type = Type.GetType(GetInfo().name);
+            Debug.Log("인식");
+            CreateAndCallCoroutine(GetInfo().name, "InterAction");
+        }
+        else
+        {
+            Debug.Log("인식 끝");
+        }
+
     }
 }
