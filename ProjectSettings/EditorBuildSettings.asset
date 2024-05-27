@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Jaewon/Jaewon_Test/Jaewon_Test2.unity
+    guid: 4280be036eb14cb4baa5d543eda09424
+  - enabled: 1
+    path: Assets/Scenes/Jaewon/Jaewon_Test/Tutorial.unity
+    guid: e9b78d1748c5fb948b817c7ca66734ab
+  - enabled: 1
+    path: Assets/Scenes/Jaewon/Jaewon_Test/Jaewon_Test1.unity
+    guid: a9936227451efee4a9b90c6d6cebc028
+  - enabled: 1
+    path: Assets/Scenes/Peace/StartScene.unity
+    guid: 077632c9099191f4b8071febd69ff34a
   m_configObjects: {}

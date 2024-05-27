@@ -1401,6 +1401,9 @@ MonoBehaviour:
   Picture:
   - "\uC720\uD559 \uC2DC\uC808 \uC0AC\uC9C4\uC774\uB2E4. \n\uD798\uB4E4 \uB54C \uBCF4\uBA74
     \uB9C8\uC74C\uC758 \uC704\uB85C\uB97C \uC5BB\uAC8C \uB41C\uB2E4."
+  Manual:
+  - "\uAC04\uD638\uC7A5\uAD50\uB97C \uC704\uD55C \uC9C0\uCE68\uC11C\uAC00 \uC801\uD600\uC788\uB294
+    \uB9E4\uB274\uC5BC\uC774\uB2E4."
   antidepressant:
   - "\uD56D \uC6B0\uC6B8\uC81C\uC774\uB2E4. \uBCF5\uC6A9\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   - "\uC870\uAE08 \uC9C4\uC815\uC774 \uB41C\uB2E4."
@@ -5003,9 +5006,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1185187039}
+      - m_Target: {fileID: 1185187038}
         m_TargetAssemblyTypeName: Gamemanager, Assembly-CSharp
-        m_MethodName: Menu_MainMenu
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -15,6 +15,8 @@ public class InterAction_Ctrl : MonoBehaviour
     [TextArea]
     public string[] Picture;
     [TextArea]
+    public string[] Manual;
+    [TextArea]
     public string[] antidepressant;
     [TextArea]
     public string[] Radio; // 표시할 메시지 배열
@@ -31,7 +33,7 @@ public class InterAction_Ctrl : MonoBehaviour
     private bool lerpPOV = false;
     private bool keyDown = false;
     public float moveSpeed = 1.0f;   // 이동 속도
-    public float rotateSpeed = 1.0f; // 회전 속도
+    public float rotateSpeed = 1.0f; // 회전 속도   
     private Vector3 startPosition;   // 시작 위치
     private Quaternion startRotation;// 시작 회전
     private Vector3 endPosition;     // 종료 위치
@@ -129,7 +131,16 @@ public class InterAction_Ctrl : MonoBehaviour
                 {
                     DesImage.sprite = Resources.Load<Sprite>("Images/사진");
                 }
-
+            }
+            if (hitObject.name == "매뉴얼")
+            {
+                toggleText = true;
+                printStrings = Manual;
+                DesImage.gameObject.SetActive(true);
+                if (Resources.Load<Sprite>("Images/매뉴얼") != null)
+                {
+                    DesImage.sprite = Resources.Load<Sprite>("Images/매뉴얼");
+                }
             }
             if (hitObject.name == "항우울제")
             {
