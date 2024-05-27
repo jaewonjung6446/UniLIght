@@ -68,6 +68,7 @@ public class InterAction_Ctrl : MonoBehaviour
             hitObject = hit.collider.gameObject;
             if (hitObject != null)
             {
+                Debug.Log("설명 출력");
                 desCription.gameObject.SetActive(true);
                 desCription.text = hitObject.name;
             }
@@ -77,12 +78,13 @@ public class InterAction_Ctrl : MonoBehaviour
             hitObject = null;
             desCription.gameObject.SetActive(false);
         }
+        #region 예전버전
         if (pressE)
         {
             GetInfo();
         }
         GetCoroutineAndRun("Test_Obj");
-        #region 예전버전
+
         /*DoWhat();
         if (toggleText && toggleTextCoroutine == null)
         {
@@ -107,12 +109,11 @@ public class InterAction_Ctrl : MonoBehaviour
     }
     public GameObject GetInfo()
     {
-        desCription.gameObject.SetActive(false);
         if (hitObject != null)
         {
-            interAction = true;
+            return hitObject;
         }
-        return hitObject;
+        else { return null; }
     }
     /*public void DoWhat()
     {
