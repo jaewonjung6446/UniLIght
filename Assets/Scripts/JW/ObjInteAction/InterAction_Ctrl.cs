@@ -26,7 +26,7 @@ public class InterAction_Ctrl : MonoBehaviour
     private string[] printStrings = null;
     //[SerializeField] GameObject Sphere;
     [SerializeField] GameObject TextPanel;
-
+    public bool DesTextAvailable = true;
     public GameObject hitObject;
     private int currentIndex = 0; // 현재 메시지 인덱스
     private bool toggleText = false;
@@ -56,6 +56,7 @@ public class InterAction_Ctrl : MonoBehaviour
         TextPanel.SetActive(false);
         Instance = this;
         tutorial = FindObjectOfType<Tutorial>();
+        desCription.gameObject.SetActive(true);
     }
     void Update()
     {
@@ -66,25 +67,18 @@ public class InterAction_Ctrl : MonoBehaviour
         if (Physics.Raycast(ray, out hit, raycastDistance))
         {
             hitObject = hit.collider.gameObject;
-            if (hitObject != null)
-            {
-                desCription.gameObject.SetActive(true);
-                desCription.text = hitObject.name;
-            }
         }
         else
         {
             hitObject = null;
-            desCription.gameObject.SetActive(false);
         }
-        if (pressE)
+        DesText();
+        if (GetInfo() != null)
         {
-            GetInfo();
+            //Debug.Log(hitObject.name);
+            GetMethodAndRun(hitObject.name);
         }
-        if (hitObject != null)
-        {
-            GetMethodAndRun("Antidepressants");
-        }
+
         #region 예전버전
         /*DoWhat();
         if (toggleText && toggleTextCoroutine == null)
@@ -107,6 +101,24 @@ public class InterAction_Ctrl : MonoBehaviour
             StopCoroutine(ToggleText());
         }*/
         #endregion
+    }
+    void DesText()
+    {
+        if (DesTextAvailable)
+        {
+            if (hitObject != null)
+            {
+                desCription.text = hitObject.name;
+            }
+            else
+            {
+                desCription.text = "";
+            }
+        }
+        else
+        {
+            desCription.text = "";
+        }
     }
     public GameObject GetInfo()
     {
@@ -372,7 +384,7 @@ public class InterAction_Ctrl : MonoBehaviour
         {
             Debug.LogError($"Class {className} not found.");
         }
-    }    
+    }
     //위인자 className과 같은 클래스를 불러오고, 그중에서methodName과 같은 '코루틴'을 불러와서 자동으로 실행하는 함수.
     void CreateAndCallCoroutine(string className, string coroutineName)
     {

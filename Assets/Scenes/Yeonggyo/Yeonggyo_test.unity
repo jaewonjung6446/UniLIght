@@ -1584,6 +1584,7 @@ MonoBehaviour:
   Radio: []
   DesImage: {fileID: 1582488451}
   TextPanel: {fileID: 1857704854}
+  DesTextAvailable: 1
   hitObject: {fileID: 0}
   moveSpeed: 1
   rotateSpeed: 1
@@ -2951,6 +2952,7 @@ GameObject:
   - component: {fileID: 1175234430}
   - component: {fileID: 1175234429}
   - component: {fileID: 1175234431}
+  - component: {fileID: 1175234432}
   m_Layer: 0
   m_Name: Picture1
   m_TagString: Untagged
@@ -3073,6 +3075,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 19.199999, y: 10.800004, z: 0.20000136}
   m_Center: {x: 0, y: 0, z: 0.0000038146973}
+--- !u!114 &1175234432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175234427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ea4bb1f63bece4c83d82eb4f51070b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DesImages:
+  - {fileID: 21300000, guid: cbd95e82df13bb043a2179dbab486314, type: 3}
+  DesImage: {fileID: 1582488451}
+  displayText: {fileID: 1200182946}
 --- !u!1 &1185187038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,6 +3486,7 @@ MonoBehaviour:
   displayText: {fileID: 1200182946}
   des: {fileID: 961837186}
   Panel: {fileID: 1857704854}
+  antidepressants: {fileID: 1582488451}
 --- !u!1 &1347164673
 GameObject:
   m_ObjectHideFlags: 0

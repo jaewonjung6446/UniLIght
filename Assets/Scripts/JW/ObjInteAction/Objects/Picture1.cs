@@ -1,18 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Picture1 : MonoBehaviour
+using UnityEngine.UI;
+public class Picture1 : MonoBehaviour, Obj_Interface
 {
-    // Start is called before the first frame update
+    private int DesImageIndex = -1;
+    [SerializeField] private List<Sprite> DesImages;
+    [SerializeField] private Image DesImage;
+    [SerializeField] private Text displayText;
     void Start()
     {
-        
+        DesImage.enabled = false;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void InterAction()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!DesImage.enabled)
+            {
+                StartDisplayImage();
+            }
+            else
+            {
+                ShowNextImage();
+            }
+        }
+        if (DesImage.enabled && Input.GetKeyDown(KeyCode.Q))
+        {
+            EndImage();
+        }
+    }
+    void StartDisplayImage()
+    {
+        displayText.gameObject.SetActive(true);
+        Time.timeScale = 0; // 게임 일시정지
+        DesImage.enabled = true; // 텍스트 출력 시작
+        DesImageIndex = -1; // 인덱스 초기화
+        ShowNextImage(); // 첫 텍스트 출력
+    }
+    void ShowNextImage()
+    {
+        DesImageIndex++;
+
+        if (DesImageIndex < DesImages.Count)
+        {
+            InterAction_Ctrl.Instance.DesTextAvailable = false;
+            displayText.text = "이제는 지난 날의 사진이다";
+            DesImage.gameObject.SetActive(true);
+            DesImage.sprite = DesImages[DesImageIndex];
+        }
+        else
+        {
+            EndImage();
+        }
+    }
+    void EndImage()
+    {
+        Time.timeScale = 1; // 게임 재개
+        InterAction_Ctrl.Instance.DesTextAvailable = true;
+        DesImage.enabled = false; // 텍스트 출력 종료
+        DesImageIndex = -1; // 인덱스 초기화
+        displayText.gameObject.SetActive(false);
     }
 }
