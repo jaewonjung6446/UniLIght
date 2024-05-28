@@ -15,10 +15,10 @@ public class PlayerMove : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
     }
-
     // Update is called once per frame
     void Update()
     {
+
         //1. y 속도에 중력을 계속 더하고싶다.
         yVelocity += gravity * Time.deltaTime;
         //2. 만약 사용자가 점프버튼을 누르면 y속도에 뛰는 힘을 대입
