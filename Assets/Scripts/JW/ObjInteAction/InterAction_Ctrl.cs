@@ -27,7 +27,7 @@ public class InterAction_Ctrl : MonoBehaviour
     //[SerializeField] GameObject Sphere;
     [SerializeField] GameObject TextPanel;
 
-    GameObject hitObject;
+    public GameObject hitObject;
     private int currentIndex = 0; // 현재 메시지 인덱스
     private bool toggleText = false;
     private bool interAction = false;
@@ -68,7 +68,6 @@ public class InterAction_Ctrl : MonoBehaviour
             hitObject = hit.collider.gameObject;
             if (hitObject != null)
             {
-                Debug.Log("설명 출력");
                 desCription.gameObject.SetActive(true);
                 desCription.text = hitObject.name;
             }
@@ -78,13 +77,15 @@ public class InterAction_Ctrl : MonoBehaviour
             hitObject = null;
             desCription.gameObject.SetActive(false);
         }
-        #region 예전버전
         if (pressE)
         {
             GetInfo();
         }
-        GetCoroutineAndRun("Test_Obj");
-
+        if (hitObject != null)
+        {
+            GetMethodAndRun("Antidepressants");
+        }
+        #region 예전버전
         /*DoWhat();
         if (toggleText && toggleTextCoroutine == null)
         {
@@ -339,33 +340,39 @@ public class InterAction_Ctrl : MonoBehaviour
         }
         #endregion
     }*///예전버전 주석처리. 펴면 엄청기니까 어지간하면 펴지 말 것
-    //인자 className과 같은 클래스를 불러오고, 그중에서methodName과 같은 '일반 메소드'를 불러와서 자동으로 실행하는 함수.
+       //인자 className과 같은 클래스를 불러오고, 그중에서methodName과 같은 '일반 메소드'를 불러와서 자동으로 실행하는 함수.
     void CreateAndCallMethod(string className, string methodName)
     {
         // 클래스 타입을 문자열로 검색
         Type type = Type.GetType(className);
         if (type != null)
         {
-            // 게임 오브젝트를 생성하고 해당 타입의 컴포넌트를 추가
-            GameObject obj = new GameObject(className);
-            Component component = obj.AddComponent(type);
+            // 해당 타입의 컴포넌트를 가진 오브젝트를 검색
+            Component component = FindObjectOfType(type) as Component;
 
-            // 메서드를 호출
-            MethodInfo method = type.GetMethod(methodName);
-            if (method != null)
+            if (component != null)
             {
-                method.Invoke(component, null);
+                // 메서드를 호출
+                MethodInfo method = type.GetMethod(methodName);
+                if (method != null)
+                {
+                    method.Invoke(component, null);
+                }
+                else
+                {
+                    Debug.LogError($"Method {methodName} not found in {className}.");
+                }
             }
             else
             {
-                Debug.LogError($"Method {methodName} not found in {className}.");
+                Debug.LogError($"Component of type {className} not found in the scene.");
             }
         }
         else
         {
             Debug.LogError($"Class {className} not found.");
         }
-    }
+    }    
     //위인자 className과 같은 클래스를 불러오고, 그중에서methodName과 같은 '코루틴'을 불러와서 자동으로 실행하는 함수.
     void CreateAndCallCoroutine(string className, string coroutineName)
     {
@@ -412,12 +419,7 @@ public class InterAction_Ctrl : MonoBehaviour
         if (GetInfo() != null && GetInfo().name == className)
         {
             //Type type = Type.GetType(GetInfo().name);
-            Debug.Log("인식");
             CreateAndCallMethod(GetInfo().name, "InterAction");
-        }
-        else
-        {
-            Debug.Log("인식 끝");
         }
     }
 
@@ -433,6 +435,5 @@ public class InterAction_Ctrl : MonoBehaviour
         {
             Debug.Log("인식 끝");
         }
-
     }
 }
