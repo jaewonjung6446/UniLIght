@@ -12,7 +12,7 @@ public class Picture1 : MonoBehaviour, Obj_Interface
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (!DesImage.enabled)
+            if (!DesImage.gameObject.activeSelf)
             {
                 StartDisplayImage();
             }
@@ -21,7 +21,7 @@ public class Picture1 : MonoBehaviour, Obj_Interface
                 ShowNextImage();
             }
         }
-        if (DesImage.enabled && Input.GetKeyDown(KeyCode.Q))
+        if (DesImage.gameObject.activeSelf && Input.GetKeyDown(KeyCode.Q))
         {
             EndImage();
         }
@@ -54,7 +54,7 @@ public class Picture1 : MonoBehaviour, Obj_Interface
     {
         Time.timeScale = 1; // 게임 재개
         InterAction_Ctrl.Instance.DesTextAvailable = true;
-        DesImage.enabled = false; // 텍스트 출력 종료
+        DesImage.gameObject.SetActive(false); // 텍스트 출력 종료
         DesImageIndex = -1; // 인덱스 초기화
         displayText.gameObject.SetActive(false);
     }

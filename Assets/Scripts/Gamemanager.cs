@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Gamemanager : MonoBehaviour
 {
     public GameObject MenuPanel;
+    public bool StopAvilable = true;
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -13,7 +14,7 @@ public class Gamemanager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && StopAvilable)
         {
             Time.timeScale = 0;
             MenuPanel.SetActive(true);
