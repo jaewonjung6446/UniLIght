@@ -8,6 +8,7 @@ public class Picture1 : MonoBehaviour, Obj_Interface
     [SerializeField] private List<Sprite> DesImages;
     [SerializeField] private Image DesImage;
     [SerializeField] private Text displayText;
+    [SerializeField] private GameObject Panel;
     public void InterAction()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -33,6 +34,7 @@ public class Picture1 : MonoBehaviour, Obj_Interface
         DesImage.enabled = true; // 텍스트 출력 시작
         DesImageIndex = -1; // 인덱스 초기화
         ShowNextImage(); // 첫 텍스트 출력
+        Panel.gameObject.SetActive(true);
     }
     void ShowNextImage()
     {
@@ -57,5 +59,6 @@ public class Picture1 : MonoBehaviour, Obj_Interface
         DesImage.gameObject.SetActive(false); // 텍스트 출력 종료
         DesImageIndex = -1; // 인덱스 초기화
         displayText.gameObject.SetActive(false);
+        Panel.gameObject.SetActive(false);
     }
 }

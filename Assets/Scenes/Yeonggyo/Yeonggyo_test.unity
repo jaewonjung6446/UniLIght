@@ -2512,7 +2512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 780941604}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3177,6 +3177,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cbd95e82df13bb043a2179dbab486314, type: 3}
   DesImage: {fileID: 1582488451}
   displayText: {fileID: 1200182946}
+  Panel: {fileID: 1857704854}
 --- !u!1 &1185187038
 GameObject:
   m_ObjectHideFlags: 0
@@ -5555,7 +5556,7 @@ GameObject:
   - component: {fileID: 2034048306}
   - component: {fileID: 2034048305}
   - component: {fileID: 2034048304}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: "\uC18C\uD30C"
   m_TagString: Flag
   m_Icon: {fileID: 0}

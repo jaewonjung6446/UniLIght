@@ -33,8 +33,7 @@ public class Tutorial : MonoBehaviour
         DesImage.sprite = Resources.Load<Sprite>("Images/B_b");
         yield return new WaitForSecondsRealtime(2.5f);
         DesImage.enabled = false;
-        SceneManager.LoadScene("Jaewon_Test1");
-        StartCoroutine("LoadSceneAndDeactivate");
+        SceneManager.LoadScene("Yeonggyo_test");
     }
     IEnumerator FadeInAndOut()
     {
