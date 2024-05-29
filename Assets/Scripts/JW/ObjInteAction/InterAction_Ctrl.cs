@@ -21,7 +21,7 @@ public class InterAction_Ctrl : MonoBehaviour
     public string[] antidepressant;
     [TextArea]
     public string[] Radio; // 표시할 메시지 배열
-
+    public AudioSource audioSource;
     [SerializeField] private Image DesImage;
     private string[] printStrings = null;
     //[SerializeField] GameObject Sphere;
@@ -57,6 +57,7 @@ public class InterAction_Ctrl : MonoBehaviour
         Instance = this;
         tutorial = FindObjectOfType<Tutorial>();
         desCription.gameObject.SetActive(true);
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {

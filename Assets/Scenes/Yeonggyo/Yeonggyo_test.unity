@@ -1582,6 +1582,7 @@ MonoBehaviour:
   Picture: []
   antidepressant: []
   Radio: []
+  audioSource: {fileID: 0}
   DesImage: {fileID: 1582488451}
   TextPanel: {fileID: 1857704854}
   DesTextAvailable: 1
@@ -2288,6 +2289,7 @@ GameObject:
   - component: {fileID: 717994448}
   - component: {fileID: 717994447}
   - component: {fileID: 717994446}
+  - component: {fileID: 717994450}
   m_Layer: 0
   m_Name: SceneTest
   m_TagString: Flag
@@ -2382,6 +2384,18 @@ Transform:
   - {fileID: 1347164674}
   m_Father: {fileID: 591473743}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &717994450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717994445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8b25f20f785034da43d6f28a8619ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &732810746
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,7 +2628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &890640830
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3698,7 +3712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1494526022
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4825,6 +4839,7 @@ GameObject:
   - component: {fileID: 1865304000}
   - component: {fileID: 1865303999}
   - component: {fileID: 1865304003}
+  - component: {fileID: 1865304004}
   m_Layer: 0
   m_Name: Radio
   m_TagString: Untagged
@@ -5014,6 +5029,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1865304004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865303998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcaf5a795ca6b24f9923c82cd92d2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1882935545
 PrefabInstance:
   m_ObjectHideFlags: 0

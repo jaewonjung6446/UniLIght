@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Radio : MonoBehaviour
+public class Radio : MonoBehaviour, Obj_Interface
 {
-    // Start is called before the first frame update
-    void Start()
+    public void InterAction()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // 오디오가 재생 중이면 중지, 중지 상태라면 재생
+            if (InterAction_Ctrl.Instance.audioSource.isPlaying)
+            {
+                Debug.Log("오디오 출력 중지");
+                InterAction_Ctrl.Instance.audioSource.Stop();
+            }
+            else
+            {
+                InterAction_Ctrl.Instance.audioSource.Play();
+                Debug.Log("오디오 출력 시작");
+            }
+        }
     }
 }

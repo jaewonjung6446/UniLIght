@@ -8,10 +8,6 @@ public class Picture1 : MonoBehaviour, Obj_Interface
     [SerializeField] private List<Sprite> DesImages;
     [SerializeField] private Image DesImage;
     [SerializeField] private Text displayText;
-    void Start()
-    {
-        DesImage.enabled = false;
-    }
     public void InterAction()
     {
         if (Input.GetKeyDown(KeyCode.E))
