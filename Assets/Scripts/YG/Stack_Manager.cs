@@ -6,9 +6,14 @@ using UnityEngine.SceneManagement;
 public class Stack_Manager : MonoBehaviour
 {
     public short drug = 0;
-    public short dep = 0;
+    public short dep_A = 0;
+    public short love = 0;
+    public short dep_B = 0;
+    
     public bool Is_drug = false;
-    public bool Is_dep = false;
+    public bool Is_dep_A = false;
+    public bool Is_love = false;
+    public bool Is_dep_B = false;
 
     //SceneManager.LoadScene("gameover");
 
@@ -20,17 +25,30 @@ public class Stack_Manager : MonoBehaviour
         if (drug >= 2)
             Is_drug = true;
     }
-    public void AddDep()
+    public void AddDep_A()
     {
-        dep += 1;
-        if (dep >= 2)
-            Is_dep = true;
+        dep_A += 1;
+        if (dep_A >= 2)
+            Is_dep_A = true;
     }
-    public void subDep()
+    public void Addlove()
     {
-        dep -= 1;
+        love += 1;
+        if (love >= 2)
+            Is_love = true;
     }
-
+    public void AddDep_B()
+    {
+        dep_B += 1;
+        if (dep_B >= 2)
+            Is_dep_B = true;
+    }
+    public void subDep_A()
+    {
+        dep_A -= 1;
+        if (dep_A < 2)
+            Is_dep_A = false;
+    }
 
     void Start()
     {
@@ -40,9 +58,6 @@ public class Stack_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Is_drug)
-            end.ending = Ending_manager.Ending.drug_A;
-        if (Is_dep)
-            end.ending = Ending_manager.Ending.depressive_A;
+
     }
 }
