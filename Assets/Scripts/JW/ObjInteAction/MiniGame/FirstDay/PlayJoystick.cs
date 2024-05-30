@@ -16,7 +16,8 @@ public class PlayJoystick : MonoBehaviour
     [SerializeField] private float timing;
     private bool startGame = false;
     private bool countdown = false;
-    private bool waitforClick = false;
+    private bool waitforClick = true;
+    private bool isPass = false;
     private GameObject callObj;
     private int a = 0;
     private int b = 0;
@@ -25,8 +26,9 @@ public class PlayJoystick : MonoBehaviour
     {
         startGame = false;
         countdown = false;
-        waitforClick = false;
+        waitforClick = true;
         callObj = null;
+        isPass = false;
         a = 0;
         b = 0;
         call = 0;
@@ -44,6 +46,11 @@ public class PlayJoystick : MonoBehaviour
         if (startGame)
         {
             StartCoroutine(PlayJoystickGame());
+        }
+        //Debug.Log("입력대기상태 : " + waitforClick);
+        if (!waitforClick)
+        {
+            CountDown.text = "게임오버";
         }
     }
     public IEnumerator UpdateText()
@@ -114,24 +121,35 @@ public class PlayJoystick : MonoBehaviour
         waitforClick = true;
         yield return new WaitForSecondsRealtime(timing);
         waitforClick = false;
+        if (isPass)
+        {
+            waitforClick = true;
+        }
+        isPass = false;
         callObj.GetComponent<Button>().image.color = Color.white;
     }
     public void PressButton(int a)
     {
+        Debug.Log("호출 인덱스 = "+(call+1));
+        Debug.Log(a);
+
         if (a == (call+1) && waitforClick)
         {
             Debug.Log("통과");
-            waitforClick = false;
+            isPass = true;
+
         }
-        if(!waitforClick)
+        else if(!waitforClick)
         {
             Debug.Log("게임오버");
             CountDown.text = "게임오버";
+            isPass = false;
         }
-        if(a != (call+1))
+        else if(a != (call+1))
         {
             Debug.Log("게임오버");
             CountDown.text = "게임오버";
+            isPass = false;
         }
     }
 }
