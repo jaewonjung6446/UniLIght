@@ -1719,6 +1719,50 @@ MonoBehaviour:
   defaultIntensity: 0.85
   noiseScale: 1
   steps: 5
+--- !u!1 &468535823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468535825}
+  - component: {fileID: 468535824}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &468535824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468535823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81eaa671eb2c9e149a5219c58f788b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &468535825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468535823}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501329507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3030,7 +3074,7 @@ GameObject:
   - component: {fileID: 890640832}
   - component: {fileID: 890640831}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: InventoryUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3860,6 +3904,7 @@ GameObject:
   - component: {fileID: 1175234429}
   - component: {fileID: 1175234431}
   - component: {fileID: 1175234432}
+  - component: {fileID: 1175234433}
   m_Layer: 0
   m_Name: Picture1
   m_TagString: Untagged
@@ -3999,6 +4044,20 @@ MonoBehaviour:
   DesImage: {fileID: 1582488451}
   displayText: {fileID: 1200182946}
   Panel: {fileID: 1857704854}
+--- !u!114 &1175234433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175234427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee77b3194392ad4f8aeabf3c372513f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: picture
+  Icon: {fileID: 21300000, guid: cbd95e82df13bb043a2179dbab486314, type: 3}
 --- !u!1 &1185187038
 GameObject:
   m_ObjectHideFlags: 0
@@ -4271,6 +4330,7 @@ GameObject:
   - component: {fileID: 1244206375}
   - component: {fileID: 1244206379}
   - component: {fileID: 1244206380}
+  - component: {fileID: 1244206381}
   m_Layer: 0
   m_Name: Antidepressants
   m_TagString: Untagged
@@ -4409,6 +4469,20 @@ MonoBehaviour:
   des: {fileID: 961837186}
   Panel: {fileID: 1857704854}
   antidepressants: {fileID: 1582488451}
+--- !u!114 &1244206381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244206374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e9f10b03e659040b2b291e67df7103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Antidepressants
+  Icon: {fileID: 21300000, guid: 0802aed3beab13d4a844d55f1520d495, type: 3}
 --- !u!1 &1278029694
 GameObject:
   m_ObjectHideFlags: 0
@@ -7115,3 +7189,4 @@ SceneRoots:
   - {fileID: 1185187040}
   - {fileID: 591473743}
   - {fileID: 1981246618}
+  - {fileID: 468535825}
