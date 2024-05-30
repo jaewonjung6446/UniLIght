@@ -1,8 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-public class Picture1 : MonoBehaviour, Obj_Interface
+using static Ending_manager;
+
+public class Map : MonoBehaviour, Obj_Interface
 {
     private int DesImageIndex = -1;
     [SerializeField] private List<Sprite> DesImages;
@@ -33,10 +36,10 @@ public class Picture1 : MonoBehaviour, Obj_Interface
     void StartDisplayImage()
     {
         displayText.gameObject.SetActive(true);
-        Time.timeScale = 0; // °ÔÀÓ ÀÏ½ÃÁ¤Áö
-        DesImage.enabled = true; // ÅØ½ºÆ® Ãâ·Â ½ÃÀÛ
-        DesImageIndex = -1; // ÀÎµ¦½º ÃÊ±âÈ­
-        ShowNextImage(); // Ã¹ ÅØ½ºÆ® Ãâ·Â
+        Time.timeScale = 0; // ê²Œì„ ì¼ì‹œì •ì§€
+        DesImage.enabled = true; // í…ìŠ¤íŠ¸ ì¶œë ¥ ì‹œì‘
+        DesImageIndex = -1; // ì¸ë±ìŠ¤ ì´ˆê¸°í™”
+        ShowNextImage(); // ì²« í…ìŠ¤íŠ¸ ì¶œë ¥
         Panel.gameObject.SetActive(true);
     }
     void ShowNextImage()
@@ -46,7 +49,7 @@ public class Picture1 : MonoBehaviour, Obj_Interface
         if (DesImageIndex < DesImages.Count)
         {
             InterAction_Ctrl.Instance.DesTextAvailable = false;
-            displayText.text = "ÀÌÁ¦´Â Áö³­ ³¯ÀÇ »çÁøÀÌ´Ù";
+            displayText.text = "ì§€ë„ í…ìŠ¤íŠ¸";
             DesImage.gameObject.SetActive(true);
             DesImage.sprite = DesImages[DesImageIndex];
         }
@@ -57,14 +60,14 @@ public class Picture1 : MonoBehaviour, Obj_Interface
     }
     void EndImage()
     {
-        Time.timeScale = 1; // °ÔÀÓ Àç°³
+        stackmanager.checkmap();
+        Time.timeScale = 1; // ê²Œì„ ì¬ê°œ
         InterAction_Ctrl.Instance.DesTextAvailable = true;
-        DesImage.gameObject.SetActive(false); // ÅØ½ºÆ® Ãâ·Â Á¾·á
-        DesImageIndex = -1; // ÀÎµ¦½º ÃÊ±âÈ­
+        DesImage.gameObject.SetActive(false); // í…ìŠ¤íŠ¸ ì¶œë ¥ ì¢…ë£Œ
+        DesImageIndex = -1; // ì¸ë±ìŠ¤ ì´ˆê¸°í™”
         displayText.gameObject.SetActive(false);
         Panel.gameObject.SetActive(false);
     }
-
     void Start()
     {
         stack = GameObject.Find("StackManager");

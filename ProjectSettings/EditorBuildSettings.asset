@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jaewon/Jaewon_Test/Tutorial.unity
     guid: e9b78d1748c5fb948b817c7ca66734ab
+  - enabled: 1
+    path: Assets/Scenes/Yeonggyo/EndingScene.unity
+    guid: b94222a6ed36ce34f9dd9c1d4e395da9
   m_configObjects: {}
