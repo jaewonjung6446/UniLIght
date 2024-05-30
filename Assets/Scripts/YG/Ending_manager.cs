@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +10,15 @@ public class Ending_manager : MonoBehaviour
     public Ending ending;
     public enum Ending
     {
-        None,
-        drug_A,
-        depressive_A,
-        depressive_B,
-        normal_B,
-        final_1,
-        final_2
+        None,           //엔딩조건 없음
+        depressive_A,   //엔딩1
+        drug_A,         //엔딩2
+        depressive_B,   //엔딩3
+        love_B,         //엔딩4
+        boom_fail,      //엔딩5
+        heal_fail,      //엔딩6
+        final_1,        //엔딩7
+        final_2         //엔딩8
     }
 
     void Start()
@@ -27,50 +29,6 @@ public class Ending_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ending != Ending.None)
-        {
-            if (ending == Ending.drug_A)
-                Drug_A();
-            else if (ending == Ending.depressive_A)
-                Depressive_A();
-            else if (ending == Ending.depressive_B)
-                Depressive_B();
-            else if (ending == Ending.normal_B)
-                Normal_B();
-            else if (ending == Ending.final_1)
-                Final_1();
-            else if (ending == Ending.final_2)
-                Final_2();
-        }
-    }
 
-    private void Final_2()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Final_1()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Normal_B()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Depressive_B()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Depressive_A()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Drug_A()
-    {
-        SceneManager.LoadScene("drug_A");
     }
 }
