@@ -15,6 +15,8 @@ public class Stack_Manager : MonoBehaviour
     public bool Is_love = false;
     public bool Is_dep_B = false;
 
+    public bool check_map = false;
+
     //SceneManager.LoadScene("gameover");
 
     public GameObject ending;
@@ -48,6 +50,10 @@ public class Stack_Manager : MonoBehaviour
         dep_A -= 1;
         if (dep_A < 2)
             Is_dep_A = false;
+    }
+    public void checkmap()
+    {
+        check_map = true;
     }
 
     void Start()
