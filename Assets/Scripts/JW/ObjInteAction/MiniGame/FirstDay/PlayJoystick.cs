@@ -34,7 +34,7 @@ public class PlayJoystick : MonoBehaviour
         call = 0;
         CountDown.text = "";
         instructions.text = "";
-        Cursor.lockState = CursorLockMode.None;
+        CursorManager.Instance.UnlockCursor();
         StartCoroutine(UpdateText());
     }
     private void Update()
