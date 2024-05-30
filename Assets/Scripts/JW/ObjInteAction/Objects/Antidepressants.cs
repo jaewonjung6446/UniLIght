@@ -54,12 +54,13 @@ public class Antidepressants : MonoBehaviour, Obj_Interface
         if (currentTextIndex < texts.Count)
         {
             displayText.text = texts[currentTextIndex];
-            if(currentTextIndex == 0)
+            if (currentTextIndex == 0)
             {
                 antidepressants.gameObject.SetActive(true);
-                if (Resources.Load<Sprite>("Images/antidepressant") != null) {
+                if (Resources.Load<Sprite>("Images/antidepressant") != null)
+                {
                     antidepressants.sprite = Resources.Load<Sprite>("Images/antidepressant");
-                    if(antidepressants.sprite == Resources.Load<Sprite>("Images/antidepressant"))
+                    if (antidepressants.sprite == Resources.Load<Sprite>("Images/antidepressant"))
                         Debug.Log("antidepressant 로드");
                 }
                 else
@@ -67,23 +68,13 @@ public class Antidepressants : MonoBehaviour, Obj_Interface
                     Debug.Log("불러오기 실패");
                 }
             }
-            else if(currentTextIndex == 1)
+            else if (currentTextIndex == 1)
             {
-<<<<<<< Updated upstream
                 antidepressants.sprite = Resources.Load<Sprite>("Images/swallow");
                 stackmanager.subDep_A();
                 stackmanager.AddDrug();
-=======
-                if (Resources.Load<Sprite>("Images/swallow") != null)
-                {
-                    antidepressants.sprite = Resources.Load<Sprite>("Images/swallow");
-                    Debug.Log("swallow 로드");
-                }
-                else
-                {
-                    Debug.Log("불러오기 실패");
-                }
->>>>>>> Stashed changes
+                antidepressants.sprite = Resources.Load<Sprite>("Images/swallow");
+                Debug.Log("swallow 로드");
             }
         }
         else

@@ -3153,12 +3153,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instructions: {fileID: 1760615291}
   destexts:
-  - "\uD14D\uC2A4\uD2B8\uC124\uBA851"
-  - "\uD14D\uC2A4\uD2B8\uC124\uBA852"
-  - "\uD14D\uC2A4\uD2B8\uC124\uBA853"
+  - 1
+  - 22
+  - 333
   CountDown: {fileID: 147779661}
   interval: 0.7
-  fontSize: 25
+  fontSize: 80
   minCall: 2
   maxCall: 3
   callObjs:
@@ -3167,7 +3167,7 @@ MonoBehaviour:
   - {fileID: 1133128783}
   - {fileID: 418466468}
   - {fileID: 1174765028}
-  timing: 1.2
+  timing: 1.5
 --- !u!114 &922266625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5049,9 +5049,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drug: 0
-  dep: 0
+  dep_A: 0
+  love: 0
+  dep_B: 0
   Is_drug: 0
-  Is_dep: 0
+  Is_dep_A: 0
+  Is_love: 0
+  Is_dep_B: 0
+  check_map: 0
   ending: {fileID: 398935466}
 --- !u!1001 &1715375676
 PrefabInstance:
