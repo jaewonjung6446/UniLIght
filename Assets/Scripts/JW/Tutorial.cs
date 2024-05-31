@@ -70,6 +70,13 @@ public class Tutorial : MonoBehaviour
         }
         yield return new WaitForSecondsRealtime(2.5f); // 페이드아웃 대기 
 
+
+        //DesImage.enabled = false; //desimage비활성화
+        // 튜토리얼 이미지를 비활성화
+        foreach(Image image in tutorialImages)
+        {
+            image.enabled = false;
+        }
         //씬 전환
         SceneManager.LoadScene("Yeonggyo_test");
         StartCoroutine("LoadSceneAndDeactivate");
