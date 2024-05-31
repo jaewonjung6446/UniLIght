@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Ending_manager;
 
 public class Radio : MonoBehaviour, Obj_Interface
 {
+    private GameObject stack;
+    Stack_Manager stackmanager;
+
     public void InterAction()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -20,7 +24,15 @@ public class Radio : MonoBehaviour, Obj_Interface
                 Time.timeScale = 0; // 게임 일시정지
                 InterAction_Ctrl.Instance.audioSource.Play();
                 Debug.Log("오디오 출력 시작");
+                stackmanager.AddDep_A();
             }
         }
+    }
+
+    public void Start()
+    {
+        InterAction_Ctrl.Instance.audioSource.Stop();
+        stack = GameObject.Find("StackManager");
+        stackmanager = stack.GetComponent<Stack_Manager>();
     }
 }
