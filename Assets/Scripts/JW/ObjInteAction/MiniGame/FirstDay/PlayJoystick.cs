@@ -34,7 +34,6 @@ public class PlayJoystick : MonoBehaviour
         call = 0;
         CountDown.text = "";
         instructions.text = "";
-        CursorManager.Instance.UnlockCursor();
         StartCoroutine(UpdateText());
     }
     private void Update()
@@ -88,6 +87,7 @@ public class PlayJoystick : MonoBehaviour
                 CountDown.text = "";
                 startGame = true;
                 CountDown.fontSize = 80;
+                CursorManager.Instance.UnlockCursor();
             }
             b++;
             yield return new WaitForSecondsRealtime(1.0f);
