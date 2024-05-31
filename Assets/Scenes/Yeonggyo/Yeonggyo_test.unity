@@ -3416,7 +3416,7 @@ GameObject:
   - component: {fileID: 1009006736}
   - component: {fileID: 1009006737}
   - component: {fileID: 1009006738}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CellLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5207,19 +5207,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4061056160047638, guid: a9ab69732a47b7240a56f2b4ba545634, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4061056160047638, guid: a9ab69732a47b7240a56f2b4ba545634, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4061056160047638, guid: a9ab69732a47b7240a56f2b4ba545634, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4061056160047638, guid: a9ab69732a47b7240a56f2b4ba545634, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8628519
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 4061056160047638, guid: a9ab69732a47b7240a56f2b4ba545634, type: 3}
       propertyPath: m_LocalPosition.y
