@@ -71,7 +71,7 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSecondsRealtime(2.5f); // 페이드아웃 대기 
 
         //씬 전환
-        SceneManager.LoadScene("Jaewon_Test1");
+        SceneManager.LoadScene("Yeonggyo_test");
         StartCoroutine("LoadSceneAndDeactivate");
     }
     //IEnumerator FadeInAndOut(Image image)
