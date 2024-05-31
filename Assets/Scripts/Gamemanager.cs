@@ -18,7 +18,7 @@ public class Gamemanager : MonoBehaviour
         {
             Time.timeScale = 0;
             MenuPanel.SetActive(true);
-            CursorManager.Instance.LockCursor();
+            CursorManager.Instance.UnlockCursor();
         }
     }
     public void Menu_Quit()

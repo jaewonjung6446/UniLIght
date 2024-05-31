@@ -63,6 +63,8 @@ public class Picture1 : MonoBehaviour, Obj_Interface
         DesImageIndex = -1; // 인덱스 초기화
         displayText.gameObject.SetActive(false);
         Panel.gameObject.SetActive(false);
+        Inventory.inventory.AddItem(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
     void Start()

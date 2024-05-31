@@ -5,7 +5,14 @@ public enum ItemInfo
 }
 public interface IItem
 {
-    string Name { get; }
-    Sprite Icon { get;}
+    public string Name { get; }
+    public Sprite Icon { get;}
     public void Use();
+    public Sprite GetSprite()
+    {
+        return Icon;
+    }
+    public string GetName() {
+        return Name;
+    }
 }
