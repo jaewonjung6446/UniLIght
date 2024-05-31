@@ -79,7 +79,7 @@ public class Tutorial : MonoBehaviour
         }
         //¾À ÀüÈ¯
         SceneManager.LoadScene("Yeonggyo_test");
-        StartCoroutine("LoadSceneAndDeactivate");
+        // StartCoroutine("LoadSceneAndDeactivate");
     }
     //IEnumerator FadeInAndOut(Image image)
     //{
