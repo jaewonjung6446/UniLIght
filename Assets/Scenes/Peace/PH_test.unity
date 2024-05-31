@@ -256,6 +256,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46726450}
   m_CullTransparentMesh: 1
+--- !u!1 &52305398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 52305400}
+  - component: {fileID: 52305399}
+  m_Layer: 0
+  m_Name: CursorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &52305399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52305398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07166076cc960e74185a7f97046d4a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &52305400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52305398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 958.8892, y: 520.2924, z: 10.200074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &95285762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,9 +2449,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 614017798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de3df84e99f6224798f3ca70048dee2, type: 3}
+  m_Script: {fileID: 11500000, guid: e1a1abe888b275141ba8e5b15ca97f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DesImages:
+  - {fileID: 21300000, guid: 0802aed3beab13d4a844d55f1520d495, type: 3}
+  DesImage: {fileID: 1582488451}
+  displayText: {fileID: 1200182946}
 --- !u!1 &618022260
 GameObject:
   m_ObjectHideFlags: 0
@@ -4084,9 +4132,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drug: 0
-  dep: 0
+  dep_A: 0
+  love: 0
+  dep_B: 0
   Is_drug: 0
-  Is_dep: 0
+  Is_dep_A: 0
+  Is_love: 0
+  Is_dep_B: 0
+  check_map: 0
   ending: {fileID: 398935466}
 --- !u!114 &1663581359
 MonoBehaviour:
@@ -4130,8 +4183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81eaa671eb2c9e149a5219c58f788b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryUI: {fileID: 0}
   items: []
-  maxInventorySize: 10
 --- !u!4 &1679153114
 Transform:
   m_ObjectHideFlags: 0
@@ -5085,3 +5138,4 @@ SceneRoots:
   - {fileID: 1185187040}
   - {fileID: 591473743}
   - {fileID: 1679153114}
+  - {fileID: 52305400}
