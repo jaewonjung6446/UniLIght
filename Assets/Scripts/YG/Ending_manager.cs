@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Ending_manager : MonoBehaviour
 {
-
     public Ending ending;
     public enum Ending
     {

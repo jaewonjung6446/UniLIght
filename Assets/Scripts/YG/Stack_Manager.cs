@@ -9,56 +9,62 @@ public class Stack_Manager : MonoBehaviour
     public short dep_A = 0;
     public short love = 0;
     public short dep_B = 0;
-    
-    public bool Is_drug = false;
-    public bool Is_dep_A = false;
-    public bool Is_love = false;
-    public bool Is_dep_B = false;
 
     public bool check_map = false;
+    public bool send_msg = false;
 
-    //SceneManager.LoadScene("gameover");
-
-    public GameObject ending;
-    Ending_manager end;
+    private Ending_manager end;
     public void AddDrug()
     {
         drug += 1;
         if (drug >= 2)
-            Is_drug = true;
+            end.ending = Ending_manager.Ending.drug_A;
     }
     public void AddDep_A()
     {
         dep_A += 1;
         if (dep_A >= 2)
-            Is_dep_A = true;
+            end.ending = Ending_manager.Ending.depressive_A;
     }
     public void Addlove()
     {
         love += 1;
         if (love >= 2)
-            Is_love = true;
+            end.ending = Ending_manager.Ending.love_B;
     }
     public void AddDep_B()
     {
         dep_B += 1;
         if (dep_B >= 2)
-            Is_dep_B = true;
+            end.ending = Ending_manager.Ending.depressive_B;
     }
     public void subDep_A()
     {
         dep_A -= 1;
         if (dep_A < 2)
-            Is_dep_A = false;
+        {
+            if (drug >= 2)
+                end.ending = Ending_manager.Ending.drug_A;
+            else if (dep_A >= 2)
+                end.ending = Ending_manager.Ending.depressive_A;
+            else if (love >= 2)
+                end.ending = Ending_manager.Ending.love_B;
+            else if (dep_B >= 2)
+                end.ending = Ending_manager.Ending.depressive_B;
+        }
     }
-    public void checkmap()
+    public void CheckMap()
     {
         check_map = true;
+    }
+    public void SendMsg()
+    {
+        send_msg = true;
     }
 
     void Start()
     {
-        end = ending.GetComponent<Ending_manager>();
+        end = FindObjectOfType<Ending_manager>();
     }
 
     // Update is called once per frame
