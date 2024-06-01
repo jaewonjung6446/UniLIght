@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class StartButtonScript : MonoBehaviour
 {
+    private Fade fade;
+
+    public void Start()
+    {
+        fade = FindObjectOfType<Fade>();
+    }
     public void StartGame()
     {
-        SceneManager.LoadScene("Tutorial");
+        fade.Fadeload("Tutorial");
     }
 }
