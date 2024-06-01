@@ -19,7 +19,7 @@ public class Antidepressants : MonoBehaviour, Obj_Interface
     Stack_Manager stackmanager;
     public void InterAction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)) 
         {
             if (!isDisplayingTexts)
             {
