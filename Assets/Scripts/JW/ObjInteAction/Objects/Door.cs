@@ -43,6 +43,7 @@ public class Door : MonoBehaviour, Obj_Interface
     }
     private IEnumerator TextOnOff()
     {
+        Tinstruction.text = "¿ﬂ«ﬂæÓ, ª°∏Æ ¿Ã∏Æ ¡‡";
         yield return new WaitForSecondsRealtime(2.0f);
         Tinstruction.text = "";
     }
