@@ -35,7 +35,6 @@ public class Tutorial : MonoBehaviour
         DesImage.sprite = Resources.Load<Sprite>("Images/B_b");
         yield return new WaitForSecondsRealtime(2.5f);
         fade.Fadeload("Yeonggyo_test");
-        DesImage.enabled = false;
     }
     IEnumerator FadeInAndOut()
     {
