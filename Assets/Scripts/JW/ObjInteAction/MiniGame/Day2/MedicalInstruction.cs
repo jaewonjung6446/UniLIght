@@ -10,17 +10,21 @@ public class MedicalInstruction : MonoBehaviour
     [SerializeField] private Text instructions;
     [SerializeField] private float textInterval;
     [SerializeField] private float instructionInterval;
-    [SerializeField] private short maxCount;
+    [SerializeField] private short goal;
+    [SerializeField] private GameObject Medical;
     public StringInterpolationFromInspector stringInterpolationFromInspector;
+    public int medicalIndex;
+    private PlayMedical playMedical;
     private int a = 0;
     private string s_instruction;
     private bool Instruction = false;
-    private short getInstructionCount = 0;
+    public short getInstructionCount = 0;
     private void Start()
     {
         StartCoroutine(UpdateText());
         Debug.Log("활성화");
         instructions.gameObject.SetActive(true);
+        playMedical = Medical.GetComponent<PlayMedical>();
     }
     public IEnumerator UpdateText()
     {
@@ -48,22 +52,31 @@ public class MedicalInstruction : MonoBehaviour
         {
             s_instruction = "";
             getInstructionCount++;
-            instructions.text = GetString(Random.Range(0, stringInterpolationFromInspector.WhatToSay.Count),Random.Range(0, medicalObj.Count));
-            if (getInstructionCount == maxCount)
+            if (getInstructionCount == goal&& playMedical.newinstruction)
             {
                 Debug.Log("게임 클리어");
+                Instruction = false;
                 instructions.text = "클리어";
                 break;
             }
-            yield return new WaitForSecondsRealtime(instructionInterval);
+            if (playMedical.newinstruction)
+            {
+                playMedical.newinstruction = false;
+                Debug.Log("다음 지시,instructions.text");
+                medicalIndex = Random.Range(0, medicalObj.Count);
+                instructions.text = GetString(Random.Range(0, stringInterpolationFromInspector.WhatToSay.Count), medicalIndex);
+                //medicalIndex = Random.Range(0, medicalObj.Count);
+                //instructions.text = GetString(Random.Range(0, stringInterpolationFromInspector.WhatToSay.Count), medicalIndex);
+                yield return new WaitForSecondsRealtime(instructionInterval);
+            }
         }
     }
     //나머지 문장들의 인덱스, 물체이름의 인덱스를 대입하면 문장 자동 완성하는 메커니즘
-    public string GetString(int elseStringIndex,int medicalObjIndex)
+    public string GetString(int elseStringIndex, int medicalObjIndex)
     {
-        for(int  i =0; i< stringInterpolationFromInspector.WhatToSay[elseStringIndex].stringInfo.Count; i++)
+        for (int i = 0; i < stringInterpolationFromInspector.WhatToSay[elseStringIndex].stringInfo.Count; i++)
         {
-            if(i == stringInterpolationFromInspector.WhatToSay[elseStringIndex].insertPoint)
+            if (i == stringInterpolationFromInspector.WhatToSay[elseStringIndex].insertPoint)
             {
                 s_instruction += medicalObj[medicalObjIndex];
             }

@@ -2155,7 +2155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &588273223
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2197,6 +2197,7 @@ Transform:
   - {fileID: 391139362}
   - {fileID: 1033446559}
   - {fileID: 614017799}
+  - {fileID: 967611878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &592867628
@@ -2293,6 +2294,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5a14bec79c7db4cb679913f0a5230f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  medicalinstruction: {fileID: 1600716751}
+  instruction: {fileID: 1200182946}
+  newinstruction: 1
+  getButtonIndex: 0
+  isCorrect: 0
+  issucceeded: 0
 --- !u!1 &603454631
 GameObject:
   m_ObjectHideFlags: 0
@@ -3243,7 +3250,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 879293715}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 592867633}
+        m_TargetAssemblyTypeName: PlayMedical, Assembly-CSharp
+        m_MethodName: GetIsCorrect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &879293715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3393,7 +3412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.24066663}
-  m_AnchoredPosition: {x: 0, y: 0.21362305}
+  m_AnchoredPosition: {x: 0.0009765625, y: 202.21004}
   m_SizeDelta: {x: 0, y: 0.4274292}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &961837186
@@ -3503,6 +3522,127 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4848644380803190596, guid: be94314c2b19dbe4ebd74d0edac524e3, type: 3}
   m_PrefabInstance: {fileID: 962620819}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &967611874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967611878}
+  - component: {fileID: 967611877}
+  - component: {fileID: 967611876}
+  - component: {fileID: 967611875}
+  - component: {fileID: 967611879}
+  m_Layer: 0
+  m_Name: Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &967611875
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967611874}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &967611876
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967611874}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &967611877
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967611874}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &967611878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967611874}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3107734, y: 0.31999993, z: -5.4290915}
+  m_LocalScale: {x: 2, y: 2, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 591473743}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &967611879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967611874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6949b6d3f0659a46b4cbebad652d10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tinstruction: {fileID: 1200182946}
+  medicalBox: {fileID: 592867628}
+  medicalInstruction: {fileID: 1600716751}
 --- !u!1 &983001717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3548,14 +3688,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WhatToSay:
-  - insertPoint: 0
-    stringInfo:
-    - "\uB0B4\uC6A90-0"
-    - "\uB0B4\uC6A90-1"
   - insertPoint: 1
     stringInfo:
-    - "\uB0B4\uC6A91-0"
-    - "\uB0B4\uC6A91-1"
+    - "\uBE68\uB9AC "
+    - " \uC918 \uBB50\uD558\uB294\uAC70\uC57C!"
+  - insertPoint: 1
+    stringInfo:
+    - "\uC2DC\uAC04\uC774 \uC5C6\uC5B4 \uBE68\uB9AC"
+    - ", \uC774\uCABD\uC73C\uB85C!"
+  - insertPoint: 0
+    stringInfo:
+    - ", \uB2E4 \uC8FD\uC5B4\uAC04\uB2E4\uACE0!"
+  - insertPoint: 0
+    stringInfo:
+    - "! \uC1A1\uC7A5\uCE58\uC6B0\uACE0 \uC2F6\uC5B4?"
 --- !u!1 &1009006735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3945,8 +4091,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.31753156}
-  m_AnchoredPosition: {x: 0.00048828125, y: 0.72021484}
-  m_SizeDelta: {x: 0.00097656, y: 1.4400024}
+  m_AnchoredPosition: {x: 0.00048828125, y: -41.293}
+  m_SizeDelta: {x: 0.001, y: -82.587}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200182946
 MonoBehaviour:
@@ -4221,7 +4367,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1356043636}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 592867633}
+        m_TargetAssemblyTypeName: PlayMedical, Assembly-CSharp
+        m_MethodName: GetIsCorrect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1356043636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4409,7 +4567,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1487686229
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4575,7 +4733,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1501320977}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 592867633}
+        m_TargetAssemblyTypeName: PlayMedical, Assembly-CSharp
+        m_MethodName: GetIsCorrect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1501320977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4696,7 +4866,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1579269803}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 592867633}
+        m_TargetAssemblyTypeName: PlayMedical, Assembly-CSharp
+        m_MethodName: GetIsCorrect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1579269803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4852,9 +5034,12 @@ MonoBehaviour:
   - "\uBD95\uB300"
   instructions: {fileID: 1200182946}
   textInterval: 1
-  instructionInterval: 2
-  maxCount: 4
+  instructionInterval: 5
+  goal: 8
+  Medical: {fileID: 592867628}
   stringInterpolationFromInspector: {fileID: 983001720}
+  medicalIndex: 0
+  getInstructionCount: 0
 --- !u!4 &1600716753
 Transform:
   m_ObjectHideFlags: 0
@@ -5144,7 +5329,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1709068605
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5402,7 +5587,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1743770558
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5668,7 +5853,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1782360027}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 592867633}
+        m_TargetAssemblyTypeName: PlayMedical, Assembly-CSharp
+        m_MethodName: GetIsCorrect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1782360027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5777,7 +5974,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1805426214
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5943,7 +6140,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1882135304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 592867633}
+        m_TargetAssemblyTypeName: PlayMedical, Assembly-CSharp
+        m_MethodName: GetIsCorrect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1882135304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6546,7 +6755,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &2132959585
 CanvasRenderer:
   m_ObjectHideFlags: 0
