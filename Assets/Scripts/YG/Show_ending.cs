@@ -22,7 +22,7 @@ public class Show_ending : MonoBehaviour
     {
         // Canvas의 자식인 Image 컴포넌트 찾기
         image = GetComponentInChildren<Image>();
-        ending = GameObject.Find("Ending_Manager");
+        ending = GameObject.Find("Ending_Manager"); //다른 씬의 오브젝트도 검색 가능한지 처음 앎;
         end = ending.GetComponent<Ending_manager>();
 
         if (image == null)
