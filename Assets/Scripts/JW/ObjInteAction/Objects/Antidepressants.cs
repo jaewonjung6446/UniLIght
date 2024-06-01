@@ -80,7 +80,6 @@ public class Antidepressants : MonoBehaviour, Obj_Interface
         else
         {
             EndTextSequence();
-            SceneManager.LoadScene("EndingScene");
         }
     }
 
