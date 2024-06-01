@@ -34,7 +34,7 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSecondsRealtime(3.5f);
         DesImage.sprite = Resources.Load<Sprite>("Images/B_b");
         yield return new WaitForSecondsRealtime(2.5f);
-        fade.Fadeload("Yeonggyo_test");
+        // fade.Fadeload("Yeonggyo_test");
     }
     IEnumerator FadeInAndOut()
     {
