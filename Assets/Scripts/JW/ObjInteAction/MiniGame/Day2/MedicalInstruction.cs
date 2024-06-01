@@ -7,7 +7,6 @@ public class MedicalInstruction : MonoBehaviour
 {
     [SerializeField] private List<string> destexts;
     [SerializeField] private List<string> medicalObj;
-    [SerializeField] private List<string> instructionElse;
     [SerializeField] private Text instructions;
     [SerializeField] private float textInterval;
     [SerializeField] private float instructionInterval;
@@ -17,6 +16,12 @@ public class MedicalInstruction : MonoBehaviour
     private string s_instruction;
     private bool Instruction = false;
     private short getInstructionCount = 0;
+    private void Start()
+    {
+        StartCoroutine(UpdateText());
+        Debug.Log("활성화");
+        instructions.gameObject.SetActive(true);
+    }
     public IEnumerator UpdateText()
     {
         Debug.Log("Day2 미니게임 설명 시작");
@@ -41,28 +46,29 @@ public class MedicalInstruction : MonoBehaviour
     {
         while (Instruction)
         {
+            s_instruction = "";
             getInstructionCount++;
-            instructions.text = medicalObj[Random.Range(0, medicalObj.Count)];
+            instructions.text = GetString(Random.Range(0, stringInterpolationFromInspector.WhatToSay.Count),Random.Range(0, medicalObj.Count));
             if (getInstructionCount == maxCount)
             {
                 Debug.Log("게임 클리어");
                 instructions.text = "클리어";
                 break;
             }
-            yield return new WaitForSeconds(instructionInterval);
+            yield return new WaitForSecondsRealtime(instructionInterval);
         }
     }
-    public string GetString()
+    //나머지 문장들의 인덱스, 물체이름의 인덱스를 대입하면 문장 자동 완성하는 메커니즘
+    public string GetString(int elseStringIndex,int medicalObjIndex)
     {
-        int i_else = Random.Range(0, stringInterpolationFromInspector.WhatToSay.Count);
-        for (int i = 0; i < stringInterpolationFromInspector.WhatToSay[i_else].stringInfo.Count; i++)
+        for(int  i =0; i< stringInterpolationFromInspector.WhatToSay[elseStringIndex].stringInfo.Count; i++)
         {
-
+            if(i == stringInterpolationFromInspector.WhatToSay[elseStringIndex].insertPoint)
+            {
+                s_instruction += medicalObj[medicalObjIndex];
+            }
+            s_instruction += stringInterpolationFromInspector.WhatToSay[elseStringIndex].stringInfo[i];
         }
-        //int i_else = Random.Range(0, instructionElse.Count);
-        string a = stringInterpolationFromInspector.WhatToSay[0].stringInfo[0];
-
-
         return s_instruction;
     }
 }

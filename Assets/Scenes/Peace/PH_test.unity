@@ -2217,7 +2217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &592867629
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2740,7 +2740,6 @@ RectTransform:
   m_Children:
   - {fileID: 1582488450}
   - {fileID: 1857704855}
-  - {fileID: 1200182945}
   - {fileID: 961837185}
   - {fileID: 890640830}
   - {fileID: 1396122353}
@@ -2748,6 +2747,7 @@ RectTransform:
   - {fileID: 1494526022}
   - {fileID: 350518031}
   - {fileID: 592867629}
+  - {fileID: 1200182945}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3548,14 +3548,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WhatToSay:
-  - whatToSay:
-    - 
-  - whatToSay:
-    - 
-  - whatToSay:
-    - 
-  - whatToSay:
-    - 
+  - insertPoint: 0
+    stringInfo:
+    - "\uB0B4\uC6A90-0"
+    - "\uB0B4\uC6A90-1"
+  - insertPoint: 1
+    stringInfo:
+    - "\uB0B4\uC6A91-0"
+    - "\uB0B4\uC6A91-1"
 --- !u!1 &1009006735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3787,6 +3787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d78fb5c15a47b4e82040e97ddd3126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MedicalInstruction: {fileID: 1600716751}
 --- !u!1 &1115301008
 GameObject:
   m_ObjectHideFlags: 0
@@ -4833,12 +4834,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600716751}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ab2a8089ad3f69428fc2ad4ded367e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destexts: []
+  destexts:
+  - "\uC124\uBA851"
+  - "\uC124\uBA852"
+  - "\uC124\uBA853"
   medicalObj:
   - "\uC9C4\uD1B5\uC81C"
   - "\uC5F0\uACE0"
@@ -4846,10 +4850,9 @@ MonoBehaviour:
   - "\uC18C\uB3C5\uC81C"
   - "\uC18C\uC5FC\uC81C"
   - "\uBD95\uB300"
-  instructionElse: []
   instructions: {fileID: 1200182946}
-  textInterval: 1.2
-  instructionInterval: 8
+  textInterval: 1
+  instructionInterval: 2
   maxCount: 4
   stringInterpolationFromInspector: {fileID: 983001720}
 --- !u!4 &1600716753
