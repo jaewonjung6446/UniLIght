@@ -18,7 +18,7 @@ public class ending_test : MonoBehaviour, Obj_Interface
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            fade.TransitionToScene("EndingScene");
+            fade.Fadeload("EndingScene");
         }
     }
 }

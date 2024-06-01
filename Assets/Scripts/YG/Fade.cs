@@ -24,9 +24,9 @@ public class Fade : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
-    public void TransitionToScene(string sceneName)
+    public void Fadeload(string sceneName)
     {
-        StartCoroutine(FadeLoad(sceneName));
+        StartCoroutine(FadeoutLoad(sceneName));
     }
 
     private IEnumerator FadeIn()
@@ -43,7 +43,7 @@ public class Fade : MonoBehaviour
         fadeImage.enabled = false;
     }
 
-    private IEnumerator FadeLoad(string sceneName)
+    private IEnumerator FadeoutLoad(string sceneName)
     {
         fadeImage.enabled = true;
         float elapsedTime = 0.0f;
