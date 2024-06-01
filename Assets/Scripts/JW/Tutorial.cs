@@ -13,6 +13,7 @@ public class Tutorial : MonoBehaviour
     public float fadeOutTime = 0.5f; // 페이드아웃에 걸리는 시간
     public float startDelay = 1.5f; // 페이드인 시작 전 대기 시간
     public string sceneName;
+    private Fade fade;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class Tutorial : MonoBehaviour
         imageCanvasGroup.alpha = 0;
         StartCoroutine(FadeInAndOut());
         DontDestroyOnLoad(this.gameObject);
+        fade = FindObjectOfType<Fade>();
     }
     IEnumerator StartScene()
     {
@@ -32,8 +34,8 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSecondsRealtime(3.5f);
         DesImage.sprite = Resources.Load<Sprite>("Images/B_b");
         yield return new WaitForSecondsRealtime(2.5f);
+        fade.Fadeload("Yeonggyo_test");
         DesImage.enabled = false;
-        SceneManager.LoadScene("Yeonggyo_test");
     }
     IEnumerator FadeInAndOut()
     {

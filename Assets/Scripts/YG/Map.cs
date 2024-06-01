@@ -60,7 +60,7 @@ public class Map : MonoBehaviour, Obj_Interface
     }
     void EndImage()
     {
-        stackmanager.checkmap();
+        stackmanager.CheckMap();
         Time.timeScale = 1; // 게임 재개
         InterAction_Ctrl.Instance.DesTextAvailable = true;
         DesImage.gameObject.SetActive(false); // 텍스트 출력 종료
