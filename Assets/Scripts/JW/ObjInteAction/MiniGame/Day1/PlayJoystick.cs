@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayJoystick : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayJoystick : MonoBehaviour
     [SerializeField] private float maxCall;
     [SerializeField] private List<GameObject> callObjs;
     [SerializeField] private float timing;
+    [SerializeField] private float sceneInterval;
+    private Ending_manager ending_Manager;
     private bool startGame = false;
     private bool countdown = false;
     private bool waitforClick = true;
@@ -34,6 +37,7 @@ public class PlayJoystick : MonoBehaviour
         call = 0;
         CountDown.text = "";
         instructions.text = "";
+        ending_Manager = FindObjectOfType<Ending_manager>();
         StartCoroutine(UpdateText());
     }
     private void Update()
@@ -50,6 +54,8 @@ public class PlayJoystick : MonoBehaviour
         if (!waitforClick)
         {
             CountDown.text = "게임오버";
+            StartCoroutine(GameOver());
+            StopCoroutine(PlayJoystickGame());
         }
     }
     public IEnumerator UpdateText()
@@ -141,15 +147,25 @@ public class PlayJoystick : MonoBehaviour
         }
         else if(!waitforClick)
         {
+            StartCoroutine(GameOver());
             Debug.Log("게임오버");
             CountDown.text = "게임오버";
+            StopCoroutine(PlayJoystickGame());
             isPass = false;
         }
         else if(a != (call+1))
         {
+            StartCoroutine(GameOver());
             Debug.Log("게임오버");
             CountDown.text = "게임오버";
+            StopCoroutine(PlayJoystickGame());
             isPass = false;
         }
+    }
+    private IEnumerator GameOver()
+    {
+        ending_Manager.ending = Ending_manager.Ending.boom_fail;
+        yield return new WaitForSecondsRealtime(sceneInterval);
+        SceneManager.LoadScene("EndingScene");
     }
 }

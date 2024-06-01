@@ -3364,6 +3364,7 @@ MonoBehaviour:
   - {fileID: 418466468}
   - {fileID: 1174765028}
   timing: 1.5
+  sceneInterval: 2.2
 --- !u!114 &922266625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5435,12 +5436,8 @@ MonoBehaviour:
   dep_A: 0
   love: 0
   dep_B: 0
-  Is_drug: 0
-  Is_dep_A: 0
-  Is_love: 0
-  Is_dep_B: 0
   check_map: 0
-  ending: {fileID: 398935466}
+  send_msg: 0
 --- !u!1001 &1715375676
 PrefabInstance:
   m_ObjectHideFlags: 0
