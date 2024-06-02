@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Peace/StartScene.unity
     guid: 077632c9099191f4b8071febd69ff34a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Yeonggyo/Yeonggyo_test.unity
     guid: 5b60a0e4694fffd43be66a7975a17d92
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Yeonggyo/EndingScene.unity
     guid: b94222a6ed36ce34f9dd9c1d4e395da9
   - enabled: 1
     path: Assets/Scenes/Peace/PH_test.unity
     guid: 668e666f03e49ce4f92d0b778810994b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Jaewon/Jaewon_Test/Tutorial.unity
     guid: e9b78d1748c5fb948b817c7ca66734ab
   m_configObjects: {}
