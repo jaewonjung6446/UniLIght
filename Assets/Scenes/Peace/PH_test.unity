@@ -3643,65 +3643,6 @@ MonoBehaviour:
   Tinstruction: {fileID: 1200182946}
   medicalBox: {fileID: 592867628}
   medicalInstruction: {fileID: 1600716751}
---- !u!1 &983001717
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 983001719}
-  - component: {fileID: 983001720}
-  m_Layer: 0
-  m_Name: MedicalStringInspector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &983001719
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983001717}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.9417734, y: 2.6350927, z: 1.5830917}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &983001720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983001717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ab071dbc09f4864b8f0124322bdbeec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WhatToSay:
-  - insertPoint: 1
-    stringInfo:
-    - "\uBE68\uB9AC "
-    - " \uC918 \uBB50\uD558\uB294\uAC70\uC57C!"
-  - insertPoint: 1
-    stringInfo:
-    - "\uC2DC\uAC04\uC774 \uC5C6\uC5B4 \uBE68\uB9AC "
-    - ", \uC774\uCABD\uC73C\uB85C!"
-  - insertPoint: 0
-    stringInfo:
-    - ", \uB2E4 \uC8FD\uC5B4\uAC04\uB2E4\uACE0!"
-  - insertPoint: 0
-    stringInfo:
-    - "! \uC1A1\uC7A5\uCE58\uC6B0\uACE0 \uC2F6\uC5B4?"
 --- !u!1 &1009006735
 GameObject:
   m_ObjectHideFlags: 0
@@ -5038,7 +4979,6 @@ MonoBehaviour:
   goal: 8
   Medical: {fileID: 592867628}
   gpt: {fileID: 2086444860}
-  stringInterpolationFromInspector: {fileID: 983001720}
   medicalIndex: 0
   getInstructionCount: 0
 --- !u!4 &1600716753
@@ -6421,7 +6361,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2086444861}
   - component: {fileID: 2086444860}
-  - component: {fileID: 2086444862}
   m_Layer: 0
   m_Name: GPT4Request
   m_TagString: Untagged
@@ -6458,20 +6397,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2086444862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086444859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 700ef3ec7700c054589f780ea7f37138, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  medical: {fileID: 1600716752}
-  res: 
 --- !u!1 &2089073669
 GameObject:
   m_ObjectHideFlags: 0
@@ -6847,5 +6772,4 @@ SceneRoots:
   - {fileID: 1679153114}
   - {fileID: 52305400}
   - {fileID: 1600716753}
-  - {fileID: 983001719}
   - {fileID: 2086444861}
