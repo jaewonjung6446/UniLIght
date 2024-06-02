@@ -7,11 +7,12 @@ public class MedicalInstruction : MonoBehaviour
 {
     [SerializeField] private List<string> destexts;
     [SerializeField] private List<string> medicalObj;
-    [SerializeField] private Text instructions;
+    public Text instructions;
     [SerializeField] private float textInterval;
     [SerializeField] private float instructionInterval;
     [SerializeField] private short goal;
     [SerializeField] private GameObject Medical;
+    public GPT4Request gpt;
     public StringInterpolationFromInspector stringInterpolationFromInspector;
     public int medicalIndex;
     private PlayMedical playMedical;
@@ -64,7 +65,8 @@ public class MedicalInstruction : MonoBehaviour
                 playMedical.newinstruction = false;
                 Debug.Log("다음 지시,instructions.text");
                 medicalIndex = Random.Range(0, medicalObj.Count);
-                instructions.text = GetString(Random.Range(0, stringInterpolationFromInspector.WhatToSay.Count), medicalIndex);
+                gpt.SendUrgentRequest(medicalObj[medicalIndex]);
+                //instructions.text = GetString(Random.Range(0, stringInterpolationFromInspector.WhatToSay.Count), medicalIndex);
                 //medicalIndex = Random.Range(0, medicalObj.Count);
                 //instructions.text = GetString(Random.Range(0, stringInterpolationFromInspector.WhatToSay.Count), medicalIndex);
                 yield return new WaitForSecondsRealtime(instructionInterval);
