@@ -4,18 +4,13 @@ using UnityEngine.Networking;
 
 public class GPT4Request : MonoBehaviour
 {
-    private string apiKey; // 여기에 OpenAI API Key를 입력하세요.
+    public string apiKey; // 여기에 OpenAI API Key를 입력하세요.
     private const string apiUrl = "https://api.openai.com/v1/chat/completions"; // 올바른 URL로 수정
     [SerializeField] MedicalInstruction medical;
     public string res;
 
     void Start()
     {
-#if UNITY_EDITOR
-        // Unity 에디터 환경 변수 설정
-        System.Environment.SetEnvironmentVariable("OPENAI_API_KEY", "sk-proj-2BrjUCzaT1bpJM1GC4JeT3BlbkFJIg5gtLKOfOEFzPsB0VAE");
-#endif
-
         // 환경 변수에서 API 키를 가져옴
         apiKey = System.Environment.GetEnvironmentVariable("OPENAI_API_KEY");
         if (string.IsNullOrEmpty(apiKey))
