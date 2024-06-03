@@ -11,6 +11,7 @@ public class Gamemanager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         MenuPanel.SetActive(false);
+        DontDestroyOnLoad(MenuPanel);
     }
     private void Update()
     {

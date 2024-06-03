@@ -11,7 +11,7 @@ public class PlayMedical : MonoBehaviour
     private MedicalInstruction medicalInstruction;
     public int getButtonIndex;
     public bool isCorrect = false;
-    public bool issucceeded = false;
+    public bool issucceeded = true;
     private void OnEnable()
     {
         medicalInstruction = medicalinstruction.GetComponent<MedicalInstruction>();

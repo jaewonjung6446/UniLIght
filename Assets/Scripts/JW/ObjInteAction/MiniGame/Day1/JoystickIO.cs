@@ -15,6 +15,7 @@ public class JoystickIO : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             Time.timeScale = 1.0f;
+            CursorManager.Instance.LockCursor();
             gamemanager.StopAvilable = true;
         }
         if (this.gameObject.activeSelf){

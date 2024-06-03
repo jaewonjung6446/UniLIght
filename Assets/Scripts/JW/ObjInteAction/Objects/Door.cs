@@ -10,10 +10,17 @@ public class Door : MonoBehaviour, Obj_Interface
     [SerializeField] GameObject medicalInstruction;
     private PlayMedical playMedical;
     private MedicalInstruction instruction;
+    private Fade fade;
     private void Start()
     {
         playMedical = medicalBox.GetComponent<PlayMedical>();
         instruction = medicalInstruction.GetComponent<MedicalInstruction>();
+        fade = FindObjectOfType<Fade>();
+        if (fade != null)
+        {
+            Debug.Log("Fade서치 완료");
+        }
+
     }
     public void InterAction()
     {
@@ -31,6 +38,7 @@ public class Door : MonoBehaviour, Obj_Interface
                 else
                 {
                     Tinstruction.text = "실패";
+                    fade.Fadeload("EndingScene");
                     playMedical.issucceeded = false;
                     playMedical.newinstruction = true;
                 }

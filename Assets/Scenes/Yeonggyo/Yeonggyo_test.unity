@@ -3365,6 +3365,8 @@ MonoBehaviour:
   - {fileID: 1174765028}
   timing: 1.5
   sceneInterval: 2.2
+  isClear: 0
+  fade: {fileID: 245766359}
 --- !u!114 &922266625
 MonoBehaviour:
   m_ObjectHideFlags: 0

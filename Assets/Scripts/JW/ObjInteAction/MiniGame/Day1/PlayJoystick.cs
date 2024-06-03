@@ -17,6 +17,7 @@ public class PlayJoystick : MonoBehaviour
     [SerializeField] private float timing;
     [SerializeField] private float sceneInterval;
     private Ending_manager ending_Manager;
+    public bool isClear = false;
     private bool startGame = false;
     private bool countdown = false;
     private bool waitforClick = true;
@@ -25,6 +26,9 @@ public class PlayJoystick : MonoBehaviour
     private int a = 0;
     private int b = 0;
     private int call = 0;
+    private Fade fade;
+    private bool isOver = false;
+
     private void OnEnable()
     {
         startGame = false;
@@ -38,6 +42,11 @@ public class PlayJoystick : MonoBehaviour
         CountDown.text = "";
         instructions.text = "";
         ending_Manager = FindObjectOfType<Ending_manager>();
+        fade = FindObjectOfType<Fade>();
+        if (fade != null)
+        {
+            Debug.Log("Fade서치 완료");
+        }
         StartCoroutine(UpdateText());
     }
     private void Update()
@@ -54,8 +63,12 @@ public class PlayJoystick : MonoBehaviour
         if (!waitforClick)
         {
             CountDown.text = "게임오버";
-            StartCoroutine(GameOver());
+            Debug.Log("씬전환 시작");
+            waitforClick = true;
             StopCoroutine(PlayJoystickGame());
+            this.gameObject.SetActive(false);
+            Time.timeScale = 1.0f;
+            fade.Fadeload("EndingScene");
         }
     }
     public IEnumerator UpdateText()
@@ -117,6 +130,11 @@ public class PlayJoystick : MonoBehaviour
             if (a == 5)
             {
                 CountDown.text = "클리어, ESC로 복귀";
+                this.gameObject.SetActive(false);
+                Debug.Log("씬전환 시작");
+                Time.timeScale = 1.0f;
+                isClear = true;
+                fade.Fadeload("PH_test");
                 Cursor.lockState = CursorLockMode.Locked;
             }
             yield return new WaitForSecondsRealtime(timeInterval);
@@ -147,25 +165,40 @@ public class PlayJoystick : MonoBehaviour
         }
         else if(!waitforClick)
         {
-            StartCoroutine(GameOver());
+            StopCoroutine(PlayJoystickGame());
+            Debug.Log("씬전환 시작");
+            this.gameObject.SetActive(false);
+            Time.timeScale = 1.0f;
+            fade.Fadeload("EndingScene");
             Debug.Log("게임오버");
             CountDown.text = "게임오버";
-            StopCoroutine(PlayJoystickGame());
             isPass = false;
         }
         else if(a != (call+1))
         {
-            StartCoroutine(GameOver());
+            StopCoroutine(PlayJoystickGame());
+            Debug.Log("씬전환 시작");
+            this.gameObject.SetActive(false);
+            Time.timeScale = 1.0f;
+            fade.Fadeload("EndingScene");
             Debug.Log("게임오버");
             CountDown.text = "게임오버";
-            StopCoroutine(PlayJoystickGame());
             isPass = false;
         }
     }
     private IEnumerator GameOver()
     {
+        isOver = false;
         ending_Manager.ending = Ending_manager.Ending.boom_fail;
         yield return new WaitForSecondsRealtime(sceneInterval);
-        SceneManager.LoadScene("EndingScene");
+        Debug.Log("씬전환 시작");
+        fade.Fadeload("EndingScene");
     }
+    private IEnumerator NextDay()
+    {
+        yield return new WaitForSecondsRealtime(sceneInterval);
+        Debug.Log("씬전환 시작");
+        fade.Fadeload("PH_test");
+    }
+
 }

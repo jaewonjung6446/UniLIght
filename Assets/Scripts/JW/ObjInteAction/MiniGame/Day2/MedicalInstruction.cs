@@ -19,15 +19,19 @@ public class MedicalInstruction : MonoBehaviour
     private string s_instruction;
     public bool Instruction = false;
     public short getInstructionCount = 0;
-
+    private Fade fade;
     private void Start()
     {
+        fade = FindObjectOfType<Fade>();
+        if (fade != null)
+        {
+            Debug.Log("Fade서치 완료");
+        }
         StartCoroutine(UpdateText());
         Debug.Log("활성화");
         instructions.gameObject.SetActive(true);
         playMedical = Medical.GetComponent<PlayMedical>();
     }
-
     public IEnumerator UpdateText()
     {
         Debug.Log("Day2 미니게임 설명 시작");
@@ -62,6 +66,7 @@ public class MedicalInstruction : MonoBehaviour
                 Debug.Log("게임 클리어");
                 Instruction = false;
                 instructions.text = "클리어";
+                fade.Fadeload("EndingScene");
                 break;
             }
             if (getInstructionCount < goal)
