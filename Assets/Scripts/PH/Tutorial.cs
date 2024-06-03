@@ -37,13 +37,6 @@ public class Tutorial : MonoBehaviour
             Debug.Log("이미지 불러오기 실패");
         }
 
-        //// 순차적으로 페이드인
-        //foreach (Image image in tutorialImages)
-        //{
-        //    yield return StartCoroutine(FadeInImage(image));
-        //    yield return new WaitForSecondsRealtime(2.5f);
-        //}
-
         // 각 이미지를 순차적으로 페이드인
         for (int i = 0; i < tutorialImages.Length; i++)
         {
@@ -51,16 +44,9 @@ public class Tutorial : MonoBehaviour
             yield return new WaitForSecondsRealtime(2.5f);
         }
 
-        //DesImage.sprite = Resources.Load<Sprite>("Images/B_a");
-        //yield return new WaitForSecondsRealtime(3.5f);
-        //DesImage.sprite = Resources.Load<Sprite>("Images/B_b");
-        //yield return new WaitForSecondsRealtime(2.5f);
-        //DesImage.enabled = false;
-
         // 마지막 이미지를 찢어진 이미지로 변경
         Image lastImage = tutorialImages[tutorialImages.Length - 1];
-        yield return StartCoroutine(FadeInImage(lastImage));
-        // yield return new WaitForSecondsRealtime(2.5f);
+        FadeInImage(lastImage); // 깜빡이는 현상 수정 -> startcoroutine()삭제
         lastImage.sprite = tornImage;
         yield return new WaitForSecondsRealtime(2.5f);
 
@@ -82,45 +68,9 @@ public class Tutorial : MonoBehaviour
         fade.Fadeload("Yeonggyo_test");
         // StartCoroutine("LoadSceneAndDeactivate");
     }
-    //IEnumerator FadeInAndOut(Image image)
-    //{
-    //    yield return new WaitForSeconds(startDelay); // 특정 시간 대기
-    //    Debug.Log("페이드인");
-    //    // 페이드인 처리
-    //    float elapsedTime = 0f;
-    //    while (elapsedTime < fadeInTime)
-    //    {
-    //        elapsedTime += Time.deltaTime;
-    //        float alpha = elapsedTime / fadeInTime;
-    //        imageCanvasGroup.alpha = alpha;
-    //        yield return null;
-    //    }
-    //    imageCanvasGroup.alpha = 1; // 최종적으로 완전히 불투명하게 설정
-    //    yield return new WaitForSecondsRealtime(1.0f);
-    //    // 페이드아웃 처리
-    //    elapsedTime = 0f;
-    //    while (elapsedTime < fadeOutTime)
-    //    {
-    //        elapsedTime += Time.deltaTime;
-    //        float alpha = 1 - (elapsedTime / fadeOutTime);
-    //        imageCanvasGroup.alpha = alpha;
-    //        yield return null;
-    //    }
-    //    imageCanvasGroup.alpha = 0; // 최종적으로 완전히 투명하게 설정
-    //    yield return StartCoroutine(FadeInImage(image));
-    //    yield return new WaitForSecondsRealtime(1.0f);
-    //    yield return StartCoroutine(FadeOutImage(image));
-    //}
+
     IEnumerator FadeInImage(Image image)
     {
-        //float elapsedTime = 0f;
-        //while (elapsedTime < fadeInTime)
-        //{
-        //    elapsedTime += Time.deltaTime;
-        //    imageCanvasGroup.alpha = Mathf.Clamp01(elapsedTime / fadeInTime);
-        //    yield return null;
-        //}
-        //imageCanvasGroup.alpha = 1f;
         float elapsedTime = 0f;
         Color color = image.color;
         while (elapsedTime < fadeInTime)
@@ -136,15 +86,6 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator FadeOutImage(Image image)
     {
-        //float elapsedTime = 0f;
-        //while (elapsedTime < fadeOutTime)
-        //{
-        //    elapsedTime += Time.deltaTime;
-        //    imageCanvasGroup.alpha = Mathf.Clamp01(1f - (elapsedTime / fadeOutTime));
-        //    yield return null;
-        //}
-        //imageCanvasGroup.alpha = 0f;
-
         float elapsedTime = 0f;
         Color color = image.color;
         while (elapsedTime < fadeOutTime)
