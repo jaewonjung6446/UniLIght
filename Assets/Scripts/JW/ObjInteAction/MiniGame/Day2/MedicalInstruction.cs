@@ -17,7 +17,7 @@ public class MedicalInstruction : MonoBehaviour
     private PlayMedical playMedical;
     private int a = 0;
     private string s_instruction;
-    private bool Instruction = false;
+    public bool Instruction = false;
     public short getInstructionCount = 0;
 
     private void Start()

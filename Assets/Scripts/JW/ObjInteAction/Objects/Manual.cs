@@ -8,13 +8,18 @@ public class Manual: MonoBehaviour, Obj_Interface
     [SerializeField] private List<Sprite> DesImages;
     [SerializeField] private Image DesImage;
     [SerializeField] private Text displayText;
+    [SerializeField] private MedicalInstruction medical;
     void Start()
     {
         DesImage.enabled = false;
     }
     public void InterAction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (medical.Instruction)
+        {
+            Debug.Log("상호작용 불가능 상태");
+        }
+        if (Input.GetKeyDown(KeyCode.E) && !medical.Instruction)
         {
             if (!DesImage.enabled)
             {
