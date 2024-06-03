@@ -12,14 +12,13 @@ public class GPT4Request : MonoBehaviour
     void Start()
     {
         // 환경 변수에서 API 키를 가져옴
-        apiKey = System.Environment.GetEnvironmentVariable("OPENAI_API_KEY");
         if (string.IsNullOrEmpty(apiKey))
         {
-            Debug.LogError("API Key is not set in environment variables.");
+            medical.instructions.text = ("API Key is not set in environment variables.");
         }
         else
         {
-            Debug.Log("API Key successfully loaded.");
+            medical.instructions.text = ("API Key successfully loaded.");
         }
     }
 
@@ -101,7 +100,7 @@ public class GPT4Request : MonoBehaviour
 
     public IEnumerator SendUrgentRequest(string item)
     {
-        string prompt = $"In an urgent wartime scenario, urgently ask a nurse for {item}.";
+        string prompt = $"In an urgent wartime scenario, urgently ask a nurse for {item}in korean.";
         bool responseReceived = false;
         string responseText = null;
 
