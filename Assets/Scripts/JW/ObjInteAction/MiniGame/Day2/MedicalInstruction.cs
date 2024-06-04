@@ -20,8 +20,11 @@ public class MedicalInstruction : MonoBehaviour
     public bool Instruction = false;
     public short getInstructionCount = 0;
     private Fade fade;
+    private Ending_manager ending_Manager;
+
     private void Start()
     {
+        ending_Manager = FindObjectOfType<Ending_manager>();
         fade = FindObjectOfType<Fade>();
         if (fade != null)
         {
@@ -60,7 +63,6 @@ public class MedicalInstruction : MonoBehaviour
             s_instruction = "";
             getInstructionCount++;
             Debug.Log("Instruction Count: " + getInstructionCount);
-
             if (getInstructionCount == goal && playMedical.newinstruction)
             {
                 Debug.Log("게임 클리어");
@@ -71,6 +73,13 @@ public class MedicalInstruction : MonoBehaviour
             }
             if (getInstructionCount < goal)
             {
+                if (!playMedical.issucceeded)
+                {
+                    Debug.Log("실패, 엔딩 출력");
+                    Instruction = false;
+                    ending_Manager.ending = Ending_manager.Ending.heal_fail;
+                    fade.Fadeload("EndingScene");
+                }
                 playMedical.newinstruction = false;
                 Debug.Log("다음 지시, instructions.text");
                 medicalIndex = Random.Range(0, medicalObj.Count);
@@ -78,6 +87,14 @@ public class MedicalInstruction : MonoBehaviour
             }
 
             yield return new WaitForSeconds(instructionInterval); // WaitForSeconds로 변경
+            if(playMedical.isCorrect == false)
+            {
+                Debug.Log("실패, 엔딩 출력");
+                Instruction = false;
+                ending_Manager.ending = Ending_manager.Ending.heal_fail;
+                fade.Fadeload("EndingScene");
+            }
+            yield return null;
         }
     }
 }

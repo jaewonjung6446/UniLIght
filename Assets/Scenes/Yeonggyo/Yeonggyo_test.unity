@@ -1918,8 +1918,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spotlight: {fileID: 429354411}
-  minIntensity: 0.17
-  maxIntensity: 0.43
   defaultIntensity: 0.85
   noiseScale: 1
   steps: 5
@@ -2644,8 +2642,8 @@ RectTransform:
   - {fileID: 552372789}
   - {fileID: 1494526022}
   - {fileID: 350518031}
-  - {fileID: 922266623}
   - {fileID: 924617409}
+  - {fileID: 922266623}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3366,7 +3364,6 @@ MonoBehaviour:
   timing: 1.5
   sceneInterval: 2.2
   isClear: 0
-  fade: {fileID: 245766359}
 --- !u!114 &922266625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3818,8 +3815,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spotlight: {fileID: 1009006737}
-  minIntensity: 0.3
-  maxIntensity: 2
   defaultIntensity: 1
   noiseScale: 0.1
   steps: 5

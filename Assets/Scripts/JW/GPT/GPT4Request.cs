@@ -9,18 +9,6 @@ public class GPT4Request : MonoBehaviour
     [SerializeField] MedicalInstruction medical;
     public string res;
 
-    void Start()
-    {
-        // 환경 변수에서 API 키를 가져옴
-        if (string.IsNullOrEmpty(apiKey))
-        {
-            medical.instructions.text = ("API Key is not set in environment variables.");
-        }
-        else
-        {
-            medical.instructions.text = ("API Key successfully loaded.");
-        }
-    }
 
     [System.Serializable]
     public class OpenAIMessage

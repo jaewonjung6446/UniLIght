@@ -11,10 +11,15 @@ public class MedicalBox : MonoBehaviour,Obj_Interface
         {
             Time.timeScale = 0;
             medicalBox.SetActive(true);
-        }else if (Input.GetKeyDown(KeyCode.E) && medicalBox.activeSelf)
+            Gamemanager.Instance.StopAvilable = false;
+
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && medicalBox.activeSelf)
         {
             Time.timeScale = 1;
             medicalBox.SetActive(false);
+            Gamemanager.Instance.StopAvilable = true;
+
         }
     }
 }
