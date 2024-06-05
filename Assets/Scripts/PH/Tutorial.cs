@@ -10,6 +10,7 @@ public class Tutorial : MonoBehaviour
     // [SerializeField] private Image DesImage;
     [SerializeField] private Image[] tutorialImages;
     [SerializeField] private Sprite tornImage;
+    [SerializeField] private Image controlImage; //조작법
     public CanvasGroup imageCanvasGroup; // CanvasGroup 컴포넌트를 할당할 변수
     public float fadeInTime = 0.5f; // 페이드인에 걸리는 시간
     public float fadeOutTime = 0.5f; // 페이드아웃에 걸리는 시간
@@ -25,6 +26,11 @@ public class Tutorial : MonoBehaviour
             color.a = 0f;
             image.color = color;
         }
+
+        Color color_c = controlImage.color;
+        color_c.a = 0f;
+        controlImage.color = color_c;
+
         StartCoroutine(StartScene());
         imageCanvasGroup.alpha = 0;
         // StartCoroutine(FadeInAndOut());
@@ -64,6 +70,14 @@ public class Tutorial : MonoBehaviour
         {
             image.enabled = false;
         }
+
+        // 튜토리얼 만화 이후 넘어가기 전에 조작법 설명 이미지
+        // 조작법 이미지를 페이드인
+        yield return StartCoroutine(FadeInImage(controlImage));
+
+        // 사용자가 클릭할 때까지 대기
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
         //씬 전환
         fade.Fadeload("Yeonggyo_test");
         // StartCoroutine("LoadSceneAndDeactivate");
