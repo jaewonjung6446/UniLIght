@@ -1114,7 +1114,7 @@ GameObject:
   - component: {fileID: 385343718}
   - component: {fileID: 385343717}
   - component: {fileID: 385343716}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: "\uC18C\uD30C"
   m_TagString: Flag
   m_Icon: {fileID: 0}
@@ -1704,7 +1704,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 439452462}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3281,7 +3281,7 @@ GameObject:
   - component: {fileID: 961837185}
   - component: {fileID: 961837187}
   - component: {fileID: 961837186}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3357,6 +3357,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2126277869}
     m_Modifications:
+    - target: {fileID: 2865933690835539263, guid: be94314c2b19dbe4ebd74d0edac524e3, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169547908892250030, guid: be94314c2b19dbe4ebd74d0edac524e3, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783548200491068552, guid: be94314c2b19dbe4ebd74d0edac524e3, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4848644380803190596, guid: be94314c2b19dbe4ebd74d0edac524e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.27
@@ -3400,6 +3412,14 @@ PrefabInstance:
     - target: {fileID: 5188719395589297662, guid: be94314c2b19dbe4ebd74d0edac524e3, type: 3}
       propertyPath: m_Name
       value: SofaLeatherBlackSmall3_2S
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188719395589297662, guid: be94314c2b19dbe4ebd74d0edac524e3, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676261460997369691, guid: be94314c2b19dbe4ebd74d0edac524e3, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3899,7 +3919,7 @@ GameObject:
   - component: {fileID: 1200182945}
   - component: {fileID: 1200182947}
   - component: {fileID: 1200182946}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: textText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

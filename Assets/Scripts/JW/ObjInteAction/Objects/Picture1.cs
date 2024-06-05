@@ -36,7 +36,7 @@ public class Picture1 : MonoBehaviour, Obj_Interface
 
         displayText.gameObject.SetActive(true);
         Time.timeScale = 0; // 게임 일시정지
-        DesImage.enabled = true; // 텍스트 출력 시작
+        DesImage.gameObject.SetActive(true);// 텍스트 출력 시작
         DesImageIndex = -1; // 인덱스 초기화
         ShowNextImage(); // 첫 텍스트 출력
         Panel.gameObject.SetActive(true);

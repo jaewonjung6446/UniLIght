@@ -38,8 +38,14 @@ public class PlayMedical : MonoBehaviour
         }
         else
         {
-            instruction.text = "함부로 만지지마";
+            StartCoroutine(MedicalText());
             Debug.Log("지시 전");
         }
+    }
+    private IEnumerator MedicalText()
+    {
+        instruction.text = "함부로 만지지마";
+        yield return new WaitForSecondsRealtime(1.5f);
+        instruction.text = "";
     }
 }

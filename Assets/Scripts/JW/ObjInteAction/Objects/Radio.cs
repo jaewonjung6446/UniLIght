@@ -17,12 +17,14 @@ public class Radio : MonoBehaviour, Obj_Interface
             {
                 Time.timeScale = 1.0f; // 게임 일시정지
                 Debug.Log("오디오 출력 중지");
+                Gamemanager.Instance.StopAvilable = true;
                 InterAction_Ctrl.Instance.audioSource.Stop();
             }
             else
             {
                 Time.timeScale = 0; // 게임 일시정지
                 InterAction_Ctrl.Instance.audioSource.Play();
+                Gamemanager.Instance.StopAvilable = false;
                 Debug.Log("오디오 출력 시작");
                 stackmanager.AddDep_A();
             }
