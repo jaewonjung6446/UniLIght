@@ -42,7 +42,7 @@ public class Tutorial : MonoBehaviour
         tutorialCoroutine = StartCoroutine(StartScene());
         imageCanvasGroup.alpha = 0;
         // StartCoroutine(FadeInAndOut());
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
     private void Update()
     {
