@@ -68,7 +68,7 @@ public class MedicalInstruction : MonoBehaviour
                 Debug.Log("게임 클리어");
                 Instruction = false;
                 instructions.text = "클리어";
-                fade.Fadeload("EndingScene");
+                fade.Fadeload("Day3");
                 break;
             }
             if (getInstructionCount < goal)
