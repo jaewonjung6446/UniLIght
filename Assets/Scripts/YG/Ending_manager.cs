@@ -42,22 +42,32 @@ public class Ending_manager : MonoBehaviour
     void OnEnable()
     {
         // 씬이 로드될 때 호출되는 이벤트에 함수 등록
+        Debug.Log("scene.name");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log(scene.name);
         // 씬 이름이 "Day3"인지 확인
-
-        if (scene.name == "Day3" && ending != Ending.None)
+        if (scene.name == "Day3")
         {
-            // Day3 씬이면 코루틴 시작
-            fade.Fadeload("EndingScene");
-        }
-        else if (scene.name == "Day3" && ending == Ending.None)
-        {
-            StartCoroutine(UpdateText());
-            displayText.gameObject.SetActive(true);
+            displayText = GameObject.Find("textText").GetComponent<Text>();
+            displayText.gameObject.SetActive(false);
+            Panel = GameObject.Find("TextPanel");
+            Panel.SetActive(false);
+            boom = GameObject.Find("Boom");
+            Ignore_mission = GameObject.Find("Ignore_mission");
+            Ignore_mission.SetActive(false);
+            if (ending != Ending.None)  //엔딩이 이미 결정났으면
+            {
+                // Day3 씬이면 코루틴 시작
+                fade.Fadeload("EndingScene");
+            }
+            else if (ending == Ending.None) //엔딩이 아직 결정 나지 않았으면
+            {
+                StartCoroutine(UpdateText());
+                displayText.gameObject.SetActive(true);
+            }
         }
     }
     public IEnumerator UpdateText()
@@ -66,6 +76,7 @@ public class Ending_manager : MonoBehaviour
         yield return new WaitForSeconds(1.3f); // WaitForSeconds로 변경
         if (stack.check_map && stack.send_msg)
             Ignore_mission.SetActive(true);
+
         while (num <= destexts.Count)
         {
             if (num < destexts.Count)

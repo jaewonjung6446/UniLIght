@@ -897,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &251457349
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2598,11 +2598,11 @@ MonoBehaviour:
   - "\uC2E0\uC18D\uD558\uAC8C \uCC98\uB9AC\uD560 \uC218 \uC788\uB3C4\uB85D. \uC774\uC0C1."
   - "\u2026\u2026\u2026."
   - "\uC5B4\uB5BB\uAC8C \uD574\uC57C \uD558\uC9C0..?"
-  textInterval: 1
+  textInterval: 2
   displayText: {fileID: 1200182946}
   Panel: {fileID: 1857704854}
   boom: {fileID: 1715375677}
-  Ignore_mission: {fileID: 251457348}
+  Ignore_mission: {fileID: 2130445640}
   ending: 0
 --- !u!1 &717994445
 GameObject:
@@ -3956,7 +3956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1200182945
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5951,7 +5951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1857704855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6245,7 +6245,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865303998}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fcaf5a795ca6b24f9923c82cd92d2d9, type: 3}
   m_Name: 
@@ -7010,6 +7010,11 @@ Transform:
   - {fileID: 1882935546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2130445640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1143646203167016, guid: a9ab69732a47b7240a56f2b4ba545634, type: 3}
+  m_PrefabInstance: {fileID: 1715375676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
