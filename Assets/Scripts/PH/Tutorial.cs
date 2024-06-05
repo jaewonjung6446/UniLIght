@@ -9,12 +9,20 @@ public class Tutorial : MonoBehaviour
 {
     // [SerializeField] private Image DesImage;
     [SerializeField] private Image[] tutorialImages;
+    [SerializeField] private string[] tutorialTexts;
+    [SerializeField] private Text tutorialTextUI; // 텍스트를 표시할 UI Text 컴포넌트
+    [SerializeField] private GameObject panel; // 텍스트와 이미지를 표시할 패널
     [SerializeField] private Sprite tornImage;
     [SerializeField] private Image controlImage; //조작법
+    [SerializeField] private string[] controlTexts; // 조작법 설명 텍스트 배열
+    [SerializeField] private Text controlTextUI; // 조작법 설명 텍스트를 표시할 UI Text
+
     public CanvasGroup imageCanvasGroup; // CanvasGroup 컴포넌트를 할당할 변수
     public float fadeInTime = 0.5f; // 페이드인에 걸리는 시간
     public float fadeOutTime = 0.5f; // 페이드아웃에 걸리는 시간
     public float startDelay = 1.5f; // 페이드인 시작 전 대기 시간
+    public float displayTime = 2.5f; // 각 이미지와 텍스트가 표시되는 시간
+
     public string sceneName;
     private Fade fade;
     private Coroutine tutorialCoroutine;
@@ -94,6 +102,58 @@ public class Tutorial : MonoBehaviour
         //씬 전환
         fade.Fadeload("Yeonggyo_test");
         // StartCoroutine("LoadSceneAndDeactivate");
+    }
+
+    IEnumerator FadeInImageAndText(Image image, string text)
+    {
+        float elapsedTime = 0f;
+        Color color = image.color;
+        tutorialTextUI.text = text; // 텍스트 설정
+        tutorialTextUI.color = new Color(tutorialTextUI.color.r, tutorialTextUI.color.g, tutorialTextUI.color.b, 0f); // 텍스트 투명하게 설정
+        Color textColor = tutorialTextUI.color;
+
+        panel.SetActive(true); // 패널 활성화
+
+        while (elapsedTime < fadeInTime)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(elapsedTime / fadeInTime);
+            image.color = color;
+
+            textColor.a = Mathf.Clamp01(elapsedTime / fadeInTime);
+            tutorialTextUI.color = textColor;
+
+            yield return null;
+        }
+        color.a = 1f;
+        image.color = color;
+
+        textColor.a = 1f;
+        tutorialTextUI.color = textColor;
+    }
+
+    IEnumerator FadeOutImageAndText(Image image, Text textUI)
+    {
+        float elapsedTime = 0f;
+        Color color = image.color;
+        Color textColor = textUI.color;
+
+        while (elapsedTime < fadeOutTime)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(1f - (elapsedTime / fadeOutTime));
+            image.color = color;
+
+            textColor.a = Mathf.Clamp01(1f - (elapsedTime / fadeOutTime));
+            textUI.color = textColor;
+
+            yield return null;
+        }
+        color.a = 0f;
+        image.color = color;
+
+        textColor.a = 0f;
+        textUI.color = textColor;
     }
 
     IEnumerator FadeInImage(Image image)
