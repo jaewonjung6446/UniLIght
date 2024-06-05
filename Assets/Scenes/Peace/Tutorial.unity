@@ -1014,11 +1014,13 @@ MonoBehaviour:
   - {fileID: 916204748}
   - {fileID: 589057922}
   - {fileID: 800341815}
-  tutorialTexts: 
-  tutorialTextUI: {fileID: 0}
-  panel: {fileID: 0}
+  tutorialTexts: []
+  tutorialTextUI: {fileID: 555656218}
+  panel: {fileID: 810879050}
   tornImage: {fileID: 21300000, guid: 24d35bbcc106bc9489bb675e2114f2e6, type: 3}
   controlImage: {fileID: 1963144385}
+  controlTexts: []
+  controlTextUI: {fileID: 0}
   imageCanvasGroup: {fileID: 784482580}
   fadeInTime: 0.5
   fadeOutTime: 0.5

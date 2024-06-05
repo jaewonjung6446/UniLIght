@@ -11,12 +11,11 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Image[] tutorialImages;
     [SerializeField] private string[] tutorialTexts;
     [SerializeField] private Text tutorialTextUI; // 텍스트를 표시할 UI Text 컴포넌트
-    [SerializeField] private string[] controlTexts; // 조작법 텍스트 배열
-    [SerializeField] private Text controlTextUI; // 조작법 텍스트를 표시할 UI Text
     [SerializeField] private GameObject panel; // 텍스트와 이미지를 표시할 패널
     [SerializeField] private Sprite tornImage;
     [SerializeField] private Image controlImage; //조작법
-    private int currentControlTextIndex = 0;
+    [SerializeField] private string[] controlTexts; // 조작법 설명 텍스트 배열
+    [SerializeField] private Text controlTextUI; // 조작법 설명 텍스트를 표시할 UI Text
 
     public CanvasGroup imageCanvasGroup; // CanvasGroup 컴포넌트를 할당할 변수
     public float fadeInTime = 0.5f; // 페이드인에 걸리는 시간
@@ -69,15 +68,15 @@ public class Tutorial : MonoBehaviour
         // 각 이미지를 순차적으로 페이드인
         for (int i = 0; i < tutorialImages.Length; i++)
         {
-            yield return StartCoroutine(FadeInImageAndText(tutorialImages[i]), tutorialTexts[i]);
-            yield return new WaitForSecondsRealtime(displayTime);
+            yield return StartCoroutine(FadeInImage(tutorialImages[i]));
+            yield return new WaitForSecondsRealtime(2.5f);
         }
 
         // 마지막 이미지를 찢어진 이미지로 변경
         Image lastImage = tutorialImages[tutorialImages.Length - 1];
         FadeInImage(lastImage); // 깜빡이는 현상 수정 -> startcoroutine()삭제
         lastImage.sprite = tornImage;
-        yield return new WaitForSecondsRealtime(displayTime);
+        yield return new WaitForSecondsRealtime(2.5f);
 
         // 순차적으로 페이드아웃
         foreach (Image image in tutorialImages)
@@ -96,7 +95,7 @@ public class Tutorial : MonoBehaviour
 
         // 튜토리얼 만화 이후 넘어가기 전에 조작법 설명 이미지
         // 조작법 이미지를 페이드인
-        yield return StartCoroutine(FadeInImageAndText(controlImage));
+        yield return StartCoroutine(FadeInImage(controlImage));
 
         // 사용자가 클릭할 때까지 대기
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
@@ -116,6 +115,52 @@ public class Tutorial : MonoBehaviour
 
         panel.SetActive(true); // 패널 활성화
 
+        while (elapsedTime < fadeInTime)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(elapsedTime / fadeInTime);
+            image.color = color;
+
+            textColor.a = Mathf.Clamp01(elapsedTime / fadeInTime);
+            tutorialTextUI.color = textColor;
+
+            yield return null;
+        }
+        color.a = 1f;
+        image.color = color;
+
+        textColor.a = 1f;
+        tutorialTextUI.color = textColor;
+    }
+
+    IEnumerator FadeOutImageAndText(Image image, Text textUI)
+    {
+        float elapsedTime = 0f;
+        Color color = image.color;
+        Color textColor = textUI.color;
+
+        while (elapsedTime < fadeOutTime)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Clamp01(1f - (elapsedTime / fadeOutTime));
+            image.color = color;
+
+            textColor.a = Mathf.Clamp01(1f - (elapsedTime / fadeOutTime));
+            textUI.color = textColor;
+
+            yield return null;
+        }
+        color.a = 0f;
+        image.color = color;
+
+        textColor.a = 0f;
+        textUI.color = textColor;
+    }
+
+    IEnumerator FadeInImage(Image image)
+    {
+        float elapsedTime = 0f;
+        Color color = image.color;
         while (elapsedTime < fadeInTime)
         {
             elapsedTime += Time.deltaTime;
