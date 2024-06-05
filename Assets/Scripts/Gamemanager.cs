@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class Gamemanager : MonoBehaviour
 {
     public GameObject MenuPanel;
+    public static Gamemanager Instance;
     public bool StopAvilable = true;
     private void Start()
     {
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(MenuPanel);
         MenuPanel.SetActive(false);
     }
     private void Update()

@@ -37,6 +37,7 @@ public class Antidepressants : MonoBehaviour, Obj_Interface
     }
     void StartTextSequence()
     {
+        Gamemanager.Instance.StopAvilable = false;
         Panel.gameObject.SetActive(true);
         InterAction_Ctrl.Instance.DesTextAvailable = false;
         displayText.gameObject.SetActive(true);
@@ -92,6 +93,8 @@ public class Antidepressants : MonoBehaviour, Obj_Interface
         isDisplayingTexts = false; // 텍스트 출력 종료
         currentTextIndex = -1; // 인덱스 초기화
         displayText.gameObject.SetActive(false);
+        Gamemanager.Instance.StopAvilable = true;
+
     }
     void Start()
     {

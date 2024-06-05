@@ -32,9 +32,11 @@ public class Picture1 : MonoBehaviour, Obj_Interface
     }
     void StartDisplayImage()
     {
+        Gamemanager.Instance.StopAvilable = false;
+
         displayText.gameObject.SetActive(true);
         Time.timeScale = 0; // 게임 일시정지
-        DesImage.enabled = true; // 텍스트 출력 시작
+        DesImage.gameObject.SetActive(true);// 텍스트 출력 시작
         DesImageIndex = -1; // 인덱스 초기화
         ShowNextImage(); // 첫 텍스트 출력
         Panel.gameObject.SetActive(true);
@@ -65,6 +67,8 @@ public class Picture1 : MonoBehaviour, Obj_Interface
         Panel.gameObject.SetActive(false);
         Inventory.inventory.AddItem(this.gameObject);
         this.gameObject.SetActive(false);
+        Gamemanager.Instance.StopAvilable = true;
+
     }
 
     void Start()

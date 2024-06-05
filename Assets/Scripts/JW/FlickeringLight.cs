@@ -4,8 +4,6 @@ using UnityEngine;
 public class FlickeringLight : MonoBehaviour
 {
     public Light spotlight;
-    public float minIntensity = 0.5f;
-    public float maxIntensity = 1.0f;
     [SerializeField] private float defaultIntensity;
     public float noiseScale = 1.0f; // 노이즈 스케일
     public int steps = 5; // 깜빡임의 명확한 단계 수
@@ -24,7 +22,7 @@ public class FlickeringLight : MonoBehaviour
             times = Random.Range(2, 4);
             for (int now = 0; now <= times; now++) // 무한 반복
             {
-                spotlight.intensity = 0.1f;
+                spotlight.intensity = 0.85f;
                 float a = Random.Range(0.01f, 0.08f);
                 yield return new WaitForSeconds(a);
                 spotlight.intensity = defaultIntensity;
