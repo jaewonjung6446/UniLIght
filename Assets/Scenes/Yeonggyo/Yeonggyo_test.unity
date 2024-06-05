@@ -1366,6 +1366,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b587f5a99388943b98dcfd6952e9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destexts:
+  - "(\uC624\uB298\uC740 \uC5B4\uC9F8\uC11C\uC778\uC9C0 \uBAB8\uC774 \uD3C9\uC18C\uBCF4\uB2E4
+    \uB354\uC6B1 \uBB34\uAC70\uC6B4 \uAC83\uB9CC \uAC19\uB2E4.)"
+  - "(\u2026\uADF8\uB7FC\uC5D0\uB3C4 \uBD88\uAD6C\uD558\uACE0, \uC624\uB298\uB3C4
+    \uD3ED\uACA9\uC744 \uD574\uC57C\uB9CC \uD55C\uB2E4.)"
+  - "(\uC624\uB298\uC758 \uCCAB \uBA85\uB839\uC778\uAC00. \uD3C9\uC18C\uBCF4\uB2E4
+    \uC870\uAE08 \uBE60\uB974\uAD70.)"
+  - "\uD1B5\uC2E0\uBCF4\uC548, \uD3EC\uACA9\uB300\uB300 \uC18C\uC18D \uC0C1\uBCD1
+    A\uC785\uB2C8\uB2E4."
+  - "A\uC0C1\uBCD1, \uB298 \uACE0\uC0DD\uC774 \uB9CE\uC544. \uC624\uB298\uB3C4 \uC2DC\uC791\uD574\uBCF4\uC790\uACE0.
+    \uB2E4\uC74C \uD3EC\uACA9\uC9C0\uAC00 \uC815\uD574\uC84C\uB2E4."
+  - "\uC88C\uD45C\uB294 \uC5B4\uB514\uC785\uB2C8\uAE4C?"
+  - "BG 105 368 \u2019\u314A\u2019 \uAD70\uBCD1\uC6D0\uC774 \uC788\uB294 \uC9C0\uC810\uC774\uB2E4."
+  - "\uBCD1\uC6D0\u2026\uC774\uC694?"
+  - "\uADF8\uB798\u2026 \uC790\uB124\uAC00 \uBB34\uC2A8 \uC0DD\uAC01\uC744 \uD558\uACE0
+    \uC788\uB294 \uC9C0 \uC54C\uACE0 \uC788\uB124. \uBD84\uBA85 \uBE44\uC778\uB95C\uC801\uC778
+    \uD589\uC704\uC9C0. "
+  - "\uD558\uC9C0\uB9CC.. \uC804\uC7C1\uC774 \uC7A5\uAE30\uD654\uB418\uACE0 \uC788\uB294
+    \uB9CC\uD07C, \uBCF4\uB2E4 \uD655\uC2E4\uD55C \uD55C \uBC29\uC774 \uD544\uC694\uD560
+    \uAC83 \uAC19\uB2E4\uB294 \uC0C1\uBD80\uC758 \uD310\uB2E8\uC774\uB2E4."
+  - "(\u2019\u314A\u2019 \uAD70\uBCD1\uC6D0\uC774\uB77C\uBA74\u2026 \uBD84\uBA85..
+    B\uAC00 \uC77C\uD558\uACE0 \uC788\uB294 \uACF3\uC774\uC796\uC544..)"
+  - "\uC2E0\uC18D\uD558\uAC8C \uCC98\uB9AC\uD560 \uC218 \uC788\uB3C4\uB85D. \uC774\uC0C1."
+  - "\u2026\u2026\u2026."
+  - "\uC5B4\uB5BB\uAC8C \uD574\uC57C \uD558\uC9C0..?"
+  textInterval: 1
+  displayText: {fileID: 0}
+  Panel: {fileID: 0}
+  boom: {fileID: 0}
+  Ignore_mission: {fileID: 0}
   ending: 0
 --- !u!1 &418466468
 GameObject:
@@ -1871,11 +1901,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60436a96a51e836429684f59d3387464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotSpeed: 200
+  rotSpeed: 1200
   walkSpeedThreshold: 0.1
   walkHeightOffset: 0.5
   smoothSpeed: 5
-  Inity: 0.8
+  initialHeight: 0.8
   player: {fileID: 1730319091}
 --- !u!136 &501329512
 CapsuleCollider:
@@ -2127,11 +2157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067a2624e747b31468df20ee0a7b5914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DesTutorial: {fileID: 1582488451}
-  DesTutorial_Sprite: {fileID: 21300000, guid: 99c4f78b02580da4f97bf8580d121a72, type: 3}
-  Gamemanager: {fileID: 1185187039}
-  fade: {fileID: 0}
-  playerMove: {fileID: 1730319099}
 --- !u!4 &588013000
 Transform:
   m_ObjectHideFlags: 0
