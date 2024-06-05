@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Peace/PH_test.unity
     guid: 668e666f03e49ce4f92d0b778810994b
   - enabled: 1
+    path: Assets/Scenes/Yeonggyo/Day3.unity
+    guid: 17f45a614de4a3249ac55979485f576b
+  - enabled: 1
     path: Assets/Scenes/Yeonggyo/EndingScene.unity
     guid: b94222a6ed36ce34f9dd9c1d4e395da9
   m_configObjects: {}

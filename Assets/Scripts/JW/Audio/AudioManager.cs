@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public enum BGMAudioPlayList
 {
-    StartBack = 0,
+    maintheme = 0,
     TutorialBack = 1,
     Day1Back = 2,
     Day2Back = 3
@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        BGMPlayMusic((int)BGMAudioPlayList.StartBack);
+        BGMPlayMusic((int)BGMAudioPlayList.maintheme);
     }
     // Function to play the music
     public void BGMPlayMusic(int index)
