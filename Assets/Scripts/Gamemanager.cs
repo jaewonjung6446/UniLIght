@@ -8,6 +8,10 @@ public class Gamemanager : MonoBehaviour
     public GameObject MenuPanel;
     public static Gamemanager Instance;
     public bool StopAvilable = true;
+    public Sprite[] images ; // 출력할 이미지 배열
+    public string[] texts ; // 출력할 텍스트 배열
+    public GameObject IImage;
+
     private void Start()
     {
         Instance = this;

@@ -94,7 +94,8 @@ public class Antidepressants : MonoBehaviour, Obj_Interface
         currentTextIndex = -1; // 인덱스 초기화
         displayText.gameObject.SetActive(false);
         Gamemanager.Instance.StopAvilable = true;
-
+        Inventory.inventory.AddItem(this.gameObject);
+        this.gameObject.SetActive(false);
     }
     void Start()
     {
