@@ -22,7 +22,7 @@ public class Ending_manager : MonoBehaviour
 
     void Start()
     {
-        ending = Ending.None;
+        ending = Ending.depressive_A;
     }
 
     // Update is called once per frame

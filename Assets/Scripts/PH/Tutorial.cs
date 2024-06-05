@@ -33,21 +33,19 @@ public class Tutorial : MonoBehaviour
         color_c.a = 0f;
         controlImage.color = color_c;
 
+        if (controlImage == null)
+        {
+            Debug.LogError("Instruction Image is not assigned in the inspector.");
+            return; // Prevent further execution if the image is not assigned
+        }
+
         tutorialCoroutine = StartCoroutine(StartScene());
         imageCanvasGroup.alpha = 0;
         // StartCoroutine(FadeInAndOut());
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (tutorialCoroutine != null)
-            {
-                StopCoroutine(tutorialCoroutine);
-                StartCoroutine(SkipToInstructions());
-            }
-        }
     }
     IEnumerator StartScene()
     {
@@ -55,6 +53,9 @@ public class Tutorial : MonoBehaviour
         {
             Debug.Log("이미지 불러오기 실패");
         }
+
+        // ESC 키 입력을 대기하는 코루틴 시작
+        StartCoroutine(WaitForSkip());
 
         // 각 이미지를 순차적으로 페이드인
         for (int i = 0; i < tutorialImages.Length; i++)
@@ -165,6 +166,17 @@ public class Tutorial : MonoBehaviour
 
         // 씬 전환
         fade.Fadeload("Yeonggyo_test");
+    }
+
+    IEnumerator WaitForSkip()
+    {
+        // ESC 키가 눌릴 때까지 대기
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Escape));
+        if (tutorialCoroutine != null)
+        {
+            StopCoroutine(tutorialCoroutine);           
+            StartCoroutine(SkipToInstructions());
+        }
     }
 
     public void SetActiveSceneObjects(Scene scene, bool isActive)

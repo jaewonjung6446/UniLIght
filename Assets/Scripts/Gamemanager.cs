@@ -8,16 +8,19 @@ public class Gamemanager : MonoBehaviour
     public GameObject MenuPanel;
     public static Gamemanager Instance;
     public bool StopAvilable = true;
+    private Fade fade;
+
     private void Start()
     {
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(MenuPanel);
         MenuPanel.SetActive(false);
+        fade = FindObjectOfType<Fade>();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && StopAvilable)
+        if (Input.GetKeyDown(KeyCode.Escape) && StopAvilable && SceneManager.GetActiveScene().name != "Tutorial" && SceneManager.GetActiveScene().name != "StartScene" && SceneManager.GetActiveScene().name != "EndingScene")
         {
             Time.timeScale = 0;
             MenuPanel.SetActive(true);
@@ -30,7 +33,9 @@ public class Gamemanager : MonoBehaviour
     }
     public void Menu_MainMenu()
     {
-        SceneManager.LoadScene("StartScene");
+        Time.timeScale = 1.0f;
+        MenuPanel.SetActive(false);
+        fade.Fadeload("StartScene");
     }
     public void Menu_Continue()
     {
