@@ -11,6 +11,7 @@ public class Gamemanager : MonoBehaviour
     public Sprite[] images ; // 출력할 이미지 배열
     public string[] texts ; // 출력할 텍스트 배열
     public GameObject IImage;
+    private Fade fade;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class Gamemanager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(MenuPanel);
         MenuPanel.SetActive(false);
+        fade = FindObjectOfType<Fade>();
     }
     private void Update()
     {
@@ -34,7 +36,9 @@ public class Gamemanager : MonoBehaviour
     }
     public void Menu_MainMenu()
     {
-        SceneManager.LoadScene("StartScene");
+        Time.timeScale = 1.0f;
+        MenuPanel.SetActive(false);
+        fade.Fadeload("StartScene");
     }
     public void Menu_Continue()
     {
