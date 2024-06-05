@@ -4655,7 +4655,7 @@ MonoBehaviour:
   SFXList:
   - {fileID: 8300000, guid: f5c5f438581b89c4b96789e177c6254a, type: 3}
   BGMList:
-  - {fileID: 8300000, guid: a0a593679ccd5cb4aa427c55b8723c84, type: 3}
+  - {fileID: 8300000, guid: ff193009dd70f8449acc669bc8c8e6e4, type: 3}
 --- !u!4 &1387989365
 Transform:
   m_ObjectHideFlags: 0
